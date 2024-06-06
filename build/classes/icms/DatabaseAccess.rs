@@ -1,0 +1,7 @@
+icms.SingleClonePair
+icms.DatabaseAccess
+icms.SingleSPCPClonePair
+icms.SingleLatePropagation
+icms.SingleMethod
+icms.SingleChange
+icms.SingleClone

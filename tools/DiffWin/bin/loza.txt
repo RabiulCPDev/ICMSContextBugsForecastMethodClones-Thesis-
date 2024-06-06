@@ -1,0 +1,17 @@
+334a335
+> 		//We are now at the starting point of clone pair section.
+340a342
+> 			//First part of the clone pair.
+345a348
+> 			//second part of the clone pair.
+349a353,354
+> 
+> 			//checking the functions whether they wrap any of the previous two clones.
+356c361
+< 						methodBlocks[i].isCloned = true ;
+---
+> 						methodBlocks[i].isCloned = true ; //first clone is within this method.
+365c370
+< 							methodBlocks[i].isCloned = true ;
+---
+> 							methodBlocks[i].isCloned = true ; //second clone is within this method.

@@ -1,0 +1,6 @@
+This is an elephant.
+this is a cow.
+This is a bat.
+this is a dog.
+this is a cat.
+this is a bird.

@@ -1,0 +1,41 @@
+    public void setSelectedUnitLabel(UnitLabel unitLabel) {
+        if (selectedUnit != unitLabel) {
+            if (selectedUnit != null) {
+                selectedUnit.setSelected(false);
+            }
+            cargoPanel.removeAll();
+            selectedUnit = unitLabel;
+
+            if (selectedUnit != null) {
+                selectedUnit.setSelected(true);
+                Unit selUnit = selectedUnit.getUnit();
+
+                Iterator unitIterator = selUnit.getUnitIterator();
+                while (unitIterator.hasNext()) {
+                    Unit unit = (Unit) unitIterator.next();
+
+                    UnitLabel label = new UnitLabel(unit, parent);
+                    label.setTransferHandler(defaultTransferHandler);
+                    label.addMouseListener(pressListener);
+
+                    cargoPanel.add(label, false);
+                }
+
+                Iterator goodsIterator = selUnit.getGoodsIterator();
+                while (goodsIterator.hasNext()) {
+                    Goods g = (Goods) goodsIterator.next();
+
+                    GoodsLabel label = new GoodsLabel(g, parent);
+                    label.setTransferHandler(defaultTransferHandler);
+                    label.addMouseListener(pressListener);
+
+                    cargoPanel.add(label, false);
+                }
+
+            }
+
+            updateCargoLabel();
+        }
+        cargoPanel.revalidate();
+        refresh();
+    }

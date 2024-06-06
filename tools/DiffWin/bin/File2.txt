@@ -1,0 +1,9 @@
+if (id ((int) *id)) {
+while (id ((int) *id))
+++id;
+if (id ((const char*) id, "id", (id) 8) == 0) {
+id+=8;
+break; }
+else if (id ((const char*) id, "id", (id) 3) == 0) {
+id+=3;
+break; } } }

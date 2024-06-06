@@ -1,0 +1,26 @@
+static long unsigned int updatePseudoTags (FILE *const fp) {
+enum { maxClassLength = 20 };
+char class [maxClassLength + 1];
+unsigned long linesRead = 0;
+fpos_t startOfLine;
+size_t classLength;
+const char *line;
+sprintf (class, "%sTAG_FILE", PSEUDO_TAG_PREFIX);
+classLength = strlen (class);
+Assert (classLength < maxClassLength);
+fgetpos (fp, &startOfLine);
+line = readLine (TagFile.vLine, fp);
+while (line != NULL  &&  line [0] == class [0]) {
+++linesRead;
+if (strncmp (line, class, classLength) == 0) {
+char tab, classType [16];
+if (sscanf (line + classLength, "%15s%c", classType, &tab) == 2  &&
+tab == '\t') {
+if (strcmp (classType, "_SORTED") == 0)
+updateSortedFlag (line, fp, startOfLine); }
+fgetpos (fp, &startOfLine); }
+line = readLine (TagFile.vLine, fp); }
+while (line != NULL) {
+++linesRead;
+line = readLine (TagFile.vLine, fp); }
+return linesRead; }

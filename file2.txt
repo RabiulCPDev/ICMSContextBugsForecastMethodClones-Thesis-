@@ -1,0 +1,28 @@
+static int vGetc (void) {
+int c;
+if (Ungetc == '\0')
+c = fileGetc ();
+else {
+c = Ungetc;
+Ungetc = '\0'; }
+if (c == '/') {
+int c2 = fileGetc ();
+if (c2 == EOF)
+longjmp (Exception, (int) ExceptionEOF);
+else if (c2 == '/') {
+do
+c = fileGetc ();
+while (c != '\n'  &&  c != EOF); }
+else if (c2 == '*') {
+c = skipOverCComment(); }
+else {
+fileUngetc (c2); } }
+else if (c == '"') {
+int c2;
+do
+c2 = fileGetc ();
+while (c2 != '"'  &&  c2 != EOF);
+c = '@'; }
+if (c == EOF)
+longjmp (Exception, (int) ExceptionEOF);
+return c; }

@@ -1,0 +1,5 @@
+icms.FragmentPair
+icms.CochangeDetectionAndPrediction
+icms.CodeFragments
+icms.FragmentPairs
+icms.CochangeAnalysisForClones

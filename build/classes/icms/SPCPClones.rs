@@ -1,0 +1,6 @@
+icms.CloneHistory
+icms.PotentialPair
+icms.DifferentClassPair
+icms.MethodHistory
+icms.CloneNonclonePair
+icms.SPCPClones

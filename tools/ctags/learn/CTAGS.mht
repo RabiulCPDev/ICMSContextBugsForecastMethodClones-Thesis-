@@ -1,0 +1,1979 @@
+From: "Saved by Windows Internet Explorer 8"
+Subject: CTAGS
+Date: Sat, 12 Feb 2011 10:56:02 -0600
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://ctags.sourceforge.net/ctags.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7600.16543
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- Creator     : groff version 1.19.2 --><!-- CreationDate: Thu Jul  9 =
+17:07:09 2009 --><HTML><HEAD><TITLE>CTAGS</TITLE>
+<META name=3DGENERATOR content=3D"MSHTML 8.00.7600.16722">
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type>
+<META name=3DContent-Style content=3Dtext/css>
+<STYLE type=3Dtext/css>P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+PRE {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+TABLE {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align=3Dcenter>CTAGS</H1><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#NAME">NAME</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#SYNOPSIS">SYNOPSIS</A><BR=
+><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#DESCRIPTION">DESCRIPTION<=
+/A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#SOURCE FILES">SOURCE=20
+FILES</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#OPTIONS">OPTIONS</A><BR><=
+A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#OPERATIONAL =
+DETAILS">OPERATIONAL=20
+DETAILS</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#TAG FILE FORMAT">TAG =
+FILE=20
+FORMAT</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#HOW TO USE WITH VI">HOW =
+TO USE=20
+WITH VI</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#HOW TO USE WITH GNU =
+EMACS">HOW TO=20
+USE WITH GNU EMACS</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#HOW TO USE WITH =
+NEDIT">HOW TO USE=20
+WITH NEDIT</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#CAVEATS">CAVEATS</A><BR><=
+A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#BUGS">BUGS</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#ENVIRONMENT =
+VARIABLES">ENVIRONMENT=20
+VARIABLES</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#FILES">FILES</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#SEE ALSO">SEE =
+ALSO</A><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#AUTHOR">AUTHOR</A><BR><A =
+
+href=3D"http://ctags.sourceforge.net/ctags.html#MOTIVATION">MOTIVATION</A=
+><BR><A=20
+href=3D"http://ctags.sourceforge.net/ctags.html#CREDITS">CREDITS</A><BR>
+<HR>
+<A name=3DNAME></A>
+<H2>NAME</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">ctags &#8722; Generate =
+tag files for=20
+source code</P><A name=3DSYNOPSIS></A>
+<H2>SYNOPSIS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%"><B>ctags</B> =
+[<B>options</B>]=20
+[<I>file(s)</I>] <B><BR>etags</B> [<B>options</B>] =
+[<I>file(s)</I>]</P><A=20
+name=3DDESCRIPTION></A>
+<H2>DESCRIPTION</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">The <B>ctags</B> and =
+<B>etags</B>=20
+programs (hereinafter collectively referred to as <B>ctags</B>, except =
+where=20
+distinguished) generate an index (or "tag") file for a variety of =
+language=20
+objects found in <I>file(s)</I>. This tag file allows these items to be =
+quickly=20
+and easily located by a text editor or other utility. A "tag" signifies =
+a=20
+language object for which an index entry is available (or, =
+alternatively, the=20
+index entry created for that object).</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Alternatively, =
+<B>ctags</B> can=20
+generate a cross reference file which lists, in human readable form, =
+information=20
+about the various source objects found in a set of language files.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Tag index files are =
+supported by=20
+numerous editors, which allow the user to locate the object associated =
+with a=20
+name appearing in a source file and jump to the file and line which =
+defines the=20
+name. Those known about at the time of this release are:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 17%"><B>Vi</B>(1) and its =
+derivatives=20
+(e.g. Elvis, Vim, Vile, Lemmy), <B>CRiSP</B>, <B>Emacs</B>, <B>FTE</B> =
+(Folding=20
+Text Editor), <B>JED</B>, <B>jEdit</B>, <B>Mined</B>, <B>NEdit</B> =
+(Nirvana=20
+Edit), <B>TSE</B> (The SemWare Editor), <B>UltraEdit</B>, =
+<B>WorkSpace</B>,=20
+<B>X2</B>, <B>Zeus</B></P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%"><B>Ctags</B> is capable =
+of=20
+generating different kinds of tags for each of many different languages. =
+For a=20
+complete list of supported languages, the names by which they are =
+recognized,=20
+and the kinds of tags which are generated for each, see the=20
+<B>&#8722;&#8722;list&#8722;languages</B> and =
+<B>&#8722;&#8722;list&#8722;kinds</B> options.</P><A=20
+name=3D"SOURCE FILES"></A>
+<H2>SOURCE FILES</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Unless the =
+<B>&#8722;&#8722;language&#8722;force</B>=20
+option is specified, the language of each source file is automatically =
+selected=20
+based upon a mapping of file names to languages. The mappings in effect =
+for each=20
+language may be display using the <B>&#8722;&#8722;list&#8722;maps</B> =
+option and may be changed=20
+using the <B>&#8722;&#8722;langmap</B> option. On platforms which =
+support it, if the name of=20
+a file is not mapped to a language and the file is executable, the first =
+line of=20
+the file is checked to see if the file is a "#!" script for a recognized =
+
+language.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">By default, all other =
+files names=20
+are ignored. This permits running <B>ctags</B> on all files in either a =
+single=20
+directory (e.g. "ctags *"), or on all files in an entire source =
+directory tree=20
+(e.g. "ctags &#8722;R"), since only those files whose names are mapped =
+to languages=20
+will be scanned.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">[The reason that .h =
+extensions are=20
+mapped to C++ files rather than C files is because it is common to use =
+.h=20
+extensions in C++, and no harm results in treating them as C++ =
+files.]</P><A=20
+name=3DOPTIONS></A>
+<H2>OPTIONS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Despite the wealth of =
+available=20
+options, defaults are set so that <B>ctags</B> is most commonly executed =
+without=20
+any options (e.g. "ctags *", or "ctags &#8722;R"), which will create a =
+tag file in the=20
+current directory for all recognized source files. The options described =
+below=20
+are provided merely to allow custom tailoring to meet special needs.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Note that spaces =
+separating the=20
+single-letter options from their parameters are optional.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Note also that the =
+boolean=20
+parameters to the long form options (those beginning with =
+"&#8722;&#8722;" and that take a=20
+"<I>[=3Dyes</I>|<I>no]</I>" parameter) may be omitted, in which case=20
+"<B>=3D</B><I>yes</I>" is implied. (e.g. <B>&#8722;&#8722;sort</B> is =
+equivalent to=20
+<B>&#8722;&#8722;sort</B>=3D<I>yes</I>). Note further that "=3D<I>1</I>" =
+and "=3D<I>on</I>" are=20
+considered synonyms for "=3D<I>yes</I>", and that "=3D<I>0</I>" and =
+"=3D<I>off</I>"=20
+are considered synonyms for "=3D<I>no</I>".</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Some options are either =
+ignored or=20
+useful only when used while running in etags mode (see <B>&#8722;e</B> =
+option). Such=20
+options will be noted.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Most options may appear =
+anywhere on=20
+the command line, affecting only those files which follow the option. A =
+few=20
+options, however, must appear before the first file name and will be =
+noted as=20
+such.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Options taking language =
+names will=20
+accept those names in either upper or lower case. See the=20
+<B>&#8722;&#8722;list&#8722;languages</B> option for a complete list of =
+the built-in language=20
+names.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><B>&#8722;a</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Equivalent to=20
+    <B>&#8722;&#8722;append</B>.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;B</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>Use backward searching patterns (e.g. ?pattern?). [Ignored in =
+etags=20
+      mode]</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;e</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>Enable etags mode, which will create a tag file for use with =
+the Emacs=20
+      editor. Alternatively, if <B>ctags</B> is invoked by a name =
+containing the=20
+      string "etags" (either by renaming, or creating a link to, the=20
+      executable), etags mode will be enabled. This option must appear =
+before=20
+      the first file name.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;f</B> <I>tagfile</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Use the name specified by <I>tagfile</I> =
+for the tag=20
+file (default is "tags", or "TAGS" when running in etags mode). If=20
+<I>tagfile</I> is specified as "&#8722;", then the tag file is written =
+to standard=20
+output instead. <B>Ctags</B> will stubbornly refuse to take orders if=20
+<I>tagfile</I> exists and its first line contains something other than a =
+valid=20
+tags line. This will save your neck if you mistakenly type "ctags =
+&#8722;f *.c", which=20
+would otherwise overwrite your first C file with the tags generated by =
+the rest!=20
+It will also refuse to accept a multi-character file name which begins =
+with a=20
+=92&#8722;=92 (dash) character, since this most likely means that you =
+left out the tag=20
+file name and this option tried to grab the next option as the file =
+name. If you=20
+really want to name your output tag file "&#8722;ugly", specify it as =
+"./&#8722;ugly". This=20
+option must appear before the first file name. If this option is =
+specified more=20
+than once, only the last will apply.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><B>&#8722;F</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Use forward searching =
+patterns=20
+      (e.g. /pattern/) (default). [Ignored in etags=20
+mode]</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;h</B> <I>list</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies a list of file extensions, =
+separated by=20
+periods, which are to be interpreted as include (or header) files. To =
+indicate=20
+files having no extension, use a period not followed by a non-period =
+character=20
+(e.g. ".", "..x", ".x."). This option only affects how the scoping of a=20
+particular kinds of tags is interpreted (i.e. whether or not they are =
+considered=20
+as globally visible or visible only within the file in which they are =
+defined);=20
+it does not map the extension to any particular language. Any tag which =
+is=20
+located in a non-include file and cannot be seen (e.g. linked to) from =
+another=20
+file is considered to have file-limited (e.g. static) scope. No kind of =
+tag=20
+appearing in an include file will be considered to have file-limited =
+scope. If=20
+the first character in the list is a plus sign, then the extensions in =
+the list=20
+will be appended to the current list; otherwise, the list will replace =
+the=20
+current list. See, also, the <B>&#8722;&#8722;file&#8722;scope</B> =
+option. The default list is=20
+".h.H.hh.hpp.hxx.h++.inc.def". To restore the default list, specify =
+<B>&#8722;h</B>=20
+<I>default</I>. Note that if an extension supplied to this option is not =
+already=20
+mapped to a particular language (see <B>SOURCE FILES</B>, above), you =
+will also=20
+need to use either the <B>&#8722;&#8722;langmap</B> or =
+<B>&#8722;&#8722;language&#8722;force</B> option.</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;I</B> =
+<I>identifier&#8722;list</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies a list of identifiers which are =
+to be=20
+specially handled while parsing C and C++ source files. This option is=20
+specifically provided to handle special cases arising through the use of =
+
+preprocessor macros. When the identifiers listed are simple identifiers, =
+these=20
+identifiers will be ignored during parsing of the source files. If an =
+identifier=20
+is suffixed with a =92+=92 character, <B>ctags</B> will also ignore any=20
+parenthesis-enclosed argument list which may immediately follow the =
+identifier=20
+in the source files. If two identifiers are separated with the =92=3D=92 =
+character,=20
+the first identifiers is replaced by the second identifiers for parsing=20
+purposes. The list of identifiers may be supplied directly on the =
+command line=20
+or read in from a separate file. If the first character of=20
+<I>identifier&#8722;list</I> is =92@=92, =92.=92 or a pathname separator =
+(=92/=92 or =92\=92), or the=20
+first two characters specify a drive letter (e.g. "C:"), the parameter=20
+<I>identifier&#8722;list</I> will be interpreted as a filename from =
+which to read a=20
+list of identifiers, one per input line. Otherwise, =
+<I>identifier&#8722;list</I> is a=20
+list of identifiers (or identifier pairs) to be specially handled, each=20
+delimited by a either a comma or by white space (in which case the list =
+should=20
+be quoted to keep the entire list as one command line argument). =
+Multiple=20
+<B>&#8722;I</B> options may be supplied. To clear the list of ignore =
+identifiers,=20
+supply a single dash ("&#8722;") for <I>identifier&#8722;list</I>.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">This feature is useful =
+when=20
+preprocessor macros are used in such a way that they cause syntactic =
+confusion=20
+due to their presence. Indeed, this is the best way of working around a =
+number=20
+of problems caused by the presence of syntax-busting macros in source =
+files (see=20
+<B>CAVEATS</B>, below). Some examples will illustrate this point.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 23%">int foo ARGDECL4(void *, =
+ptr, long=20
+int, nbytes)</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">In the above example, the =
+macro=20
+"ARGDECL4" would be mistakenly interpreted to be the name of the =
+function=20
+instead of the correct name of "foo". Specifying <B>&#8722;I</B> =
+<I>ARGDECL4</I>=20
+results in the correct behavior.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 23%">/* creates an RCS version =
+string in=20
+module */ <BR>MODULE_VERSION("$Revision: 690 $")</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">In the above example the =
+macro=20
+invocation looks too much like a function definition because it is not =
+followed=20
+by a semicolon (indeed, it could even be followed by a global variable=20
+definition that would look much like a K&amp;R style function parameter=20
+declaration). In fact, this seeming function definition could possibly =
+even=20
+cause the rest of the file to be skipped over while trying to complete =
+the=20
+definition. Specifying <B>&#8722;I</B> <I>MODULE_VERSION+</I> would =
+avoid such a=20
+problem.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 23%">CLASS Example { <BR>// =
+your content=20
+here <BR>};</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">The example above uses =
+"CLASS" as a=20
+preprocessor macro which expands to something different for each =
+platform. For=20
+instance CLASS may be defined as "class __declspec(dllexport)" on Win32=20
+platforms and simply "class" on UNIX. Normally, the absence of the C++ =
+keyword=20
+"class" would cause the source file to be incorrectly parsed. Correct =
+behavior=20
+can be restored by specifying <B>&#8722;I</B> <I>CLASS=3Dclass</I>.</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;L</B> <I>file</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Read from <I>file</I> a list of file names =
+for which=20
+tags should be generated. If <I>file</I> is specified as "&#8722;", then =
+file names=20
+are read from standard input. File names read using this option are =
+processed=20
+following file names appearing on the command line. Options are also =
+accepted in=20
+this input. If this option is specified more than once, only the last =
+will=20
+apply. <B>Note:</B> <I>file</I> is read in line-oriented mode, where a =
+new line=20
+is the only delimiter and non-trailing white space is considered =
+significant, in=20
+order that file names containing spaces may be supplied (however, =
+trailing white=20
+space is stripped from lines); this can affect how options are parsed if =
+
+included in the input.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><B>&#8722;n</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"47%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Equivalent to=20
+      <B>&#8722;&#8722;excmd</B>=3D<I>number</I>.</P></TD>
+    <TD width=3D"35%"></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;N</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"47%">
+      <P>Equivalent to =
+<B>&#8722;&#8722;excmd</B>=3D<I>pattern</I>.</P></TD>
+    <TD width=3D"35%"></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;o</B> <I>tagfile</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Equivalent to <B>&#8722;f</B> =
+<I>tagfile</I>.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><B>&#8722;R</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Equivalent to=20
+    <B>&#8722;&#8722;recurse</B>.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;u</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>Equivalent to <B>&#8722;&#8722;sort</B>=3D<I>no</I> (i.e. =
+"unsorted").</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;V</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>Equivalent to <B>&#8722;&#8722;verbose</B>.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;w</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>This option is silently ignored for backward-compatibility with =
+the=20
+      ctags of SVR4 Unix.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"3%">
+      <P><B>&#8722;x</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"82%">
+      <P>Print a tabular, human-readable cross reference (xref) file to =
+standard=20
+      output instead of generating a tag file. The information contained =
+in the=20
+      output includes: the tag name; the kind of tag; the line number, =
+file=20
+      name, and source line (with extra white space condensed) of the =
+file which=20
+      defines the tag. No tag file is written and all options affecting =
+tag file=20
+      output will be ignored. Example applications for this feature are=20
+      generating a listing of all functions located in a source file =
+(e.g.=20
+      <B>ctags &#8722;x &#8722;&#8722;c&#8722;kinds</B>=3D<I>f =
+file</I>), or generating a list of all=20
+      externally visible global variables located in a source file (e.g. =
+
+      <B>ctags &#8722;x &#8722;&#8722;c&#8722;kinds</B>=3D<I>v</I> =
+<B>&#8722;&#8722;file&#8722;scope</B>=3D<I>no file</I>).=20
+      This option must appear before the first file=20
+name.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;append</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Indicates whether tags generated from the =
+specified=20
+files should be appended to those already present in the tag file or =
+should=20
+replace them. This option is off by default. This option must appear =
+before the=20
+first file name.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;etags&#8722;include</B>=3D<I>file</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Include a reference to <I>file</I> in the =
+tag file.=20
+This option may be specified as many times as desired. This supports =
+Emacs=92=20
+capability to use a tag file which "includes" other tag files. =
+[Available only=20
+in etags mode]</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;exclude</B>=3D[<I>pattern</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Add <I>pattern</I> to a list of excluded =
+files and=20
+directories. This option may be specified as many times as desired. For =
+each=20
+file name considered by <B>ctags</B>, each <I>pattern</I> specified =
+using this=20
+option will be compared against both the complete path (e.g. =
+some/path/base.ext)=20
+and the base name (e.g. base.ext) of the file, thus allowing patterns =
+which=20
+match a given file name irrespective of its path, or match only a =
+specific path.=20
+If appropriate support is available from the runtime library of your C =
+compiler,=20
+then <I>pattern</I> may contain the usual shell wildcards (not regular=20
+expressions) common on Unix (be sure to quote the option parameter to =
+protect=20
+the wildcards from being expanded by the shell before being passed to=20
+<B>ctags</B>; also be aware that wildcards can match the slash =
+character, =92/=92).=20
+You can determine if shell wildcards are available on your platform by =
+examining=20
+the output of the <B>&#8722;&#8722;version</B> option, which will =
+include "+wildcards" in=20
+the compiled feature list; otherwise, <I>pattern</I> is matched against =
+file=20
+names using a simple textual comparison.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">If <I>pattern</I> begins =
+with the=20
+character =92@=92, then the rest of the string is interpreted as a file =
+name from=20
+which to read exclusion patterns, one per line. If <I>pattern</I> is =
+empty, the=20
+list of excluded patterns is cleared. Note that at program startup, the =
+default=20
+exclude list contains "EIFGEN", "SCCS", "RCS", and "CVS", which are =
+names of=20
+directories for which it is generally not desirable to descend while =
+processing=20
+the <B>&#8722;&#8722;recurse</B> option.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;excmd</B>=3D<I>type</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Determines the type of EX command used to =
+locate=20
+tags in the source file. [Ignored in etags mode]</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">The valid values for =
+<I>type</I>=20
+(either the entire word or the first letter is accepted) are:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"18%"></TD>
+    <TD width=3D"10%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>number</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"68%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Use only line numbers =
+in the tag=20
+      file for locating tags. This has four =
+advantages:</P></TD></TR></TBODY></TABLE>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"32%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">1.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"62%">
+      <P valign=3D"top">Significantly reduces the size of the resulting =
+tag=20
+      file.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"32%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">2.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"62%">
+      <P valign=3D"top">Eliminates failures to find tags because the =
+line defining=20
+      the tag has changed, causing the pattern match to fail (note that =
+some=20
+      editors, such as <B>vim</B>, are able to recover in many such=20
+      instances).</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"32%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">3.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"62%">
+      <P valign=3D"top">Eliminates finding identical matching, but =
+incorrect,=20
+      source lines (see <B>BUGS</B>, below).</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"32%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">4.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"62%">
+      <P valign=3D"top">Retains separate entries in the tag file for =
+lines which=20
+      are identical in content. In <I>pattern</I> mode, duplicate =
+entries are=20
+      dropped because the search patterns they generate are identical, =
+making=20
+      the duplicate entries useless.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 32%">However, this option has =
+one=20
+significant drawback: changes to the source files can cause the line =
+numbers=20
+recorded in the tag file to no longer correspond to the lines in the =
+source=20
+file, causing jumps to some tags to miss the target definition by one or =
+more=20
+lines. Basically, this option is best used when the source code to which =
+it is=20
+applied is not subject to change. Selecting this option type causes the=20
+following options to be ignored: <B>&#8722;BF</B>.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"18%"></TD>
+    <TD width=3D"11%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><I>pattern</I></P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"68%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Use only search =
+patterns for all=20
+      tags, rather than the line numbers usually used for macro =
+definitions.=20
+      This has the advantage of not referencing obsolete line numbers =
+when lines=20
+      have been added or removed since the tag file was =
+generated.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"18%"></TD>
+    <TD width=3D"11%">
+      <P><I>mixed</I></P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"68%">
+      <P>In this mode, patterns are generally used with a few =
+exceptions. For C,=20
+      line numbers are used for macro definition tags. This was the =
+default=20
+      format generated by the original <B>ctags</B> and is, therefore, =
+retained=20
+      as the default for this option. For Fortran, line numbers are used =
+for=20
+      common blocks because their corresponding source lines are =
+generally=20
+      identical, making pattern searches useless for finding all=20
+  matches.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;extra</B>=3D<I>[+|&#8722;]flags</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies whether to include extra tag =
+entries for=20
+certain kinds of information. The parameter <I>flags</I> is a set of =
+one-letter=20
+flags, each representing one kind of extra tag entry to include in the =
+tag file.=20
+If <I>flags</I> is preceded by by either the =92+=92 or =92&#8722;=92 =
+character, the effect of=20
+each flag is added to, or removed from, those currently enabled; =
+otherwise the=20
+flags replace any current settings. The meaning of each flag is as =
+follows:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>f</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Include an entry for =
+the base file=20
+      name of every source file (e.g. "example.c"), which addresses the =
+first=20
+      line of the file.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>q</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Include an extra =
+class-qualified=20
+      tag entry for each tag which is a member of a class (for languages =
+for=20
+      which this information is extracted; currently C++, Eiffel, and =
+Java). The=20
+      actual form of the qualified tag depends upon the language from =
+which the=20
+      tag was derived (using a form that is most natural for how =
+qualified calls=20
+      are specified in the language). For C++, it is in the form=20
+      "class::member"; for Eiffel and Java, it is in the form =
+"class.member".=20
+      This may allow easier location of a specific tags when multiple=20
+      occurrences of a tag name occur in the tag file. Note, however, =
+that this=20
+      could potentially more than double the size of the tag=20
+  file.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;fields</B>=3D<I>[+|&#8722;]flags</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies the available extension fields =
+which are=20
+to be included in the entries of the tag file (see <B>TAG FILE =
+FORMAT</B>,=20
+below, for more information). The parameter <I>flags</I> is a set of =
+one-letter=20
+flags, each representing one type of extension field to include, with =
+the=20
+following meanings (disabled by default unless indicated):</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>a</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Access (or export) of =
+class=20
+      members</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>f</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">File-restricted scoping [enabled]</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>i</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Inheritance information</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>k</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Kind of tag as a single letter =
+[enabled]</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>K</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Kind of tag as full name</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>l</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Language of source file containing tag</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>m</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Implementation information</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>n</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Line number of tag definition</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>s</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Scope of tag definition [enabled]</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>S</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Signature of routine (e.g. prototype or =
+parameter=20
+    list)</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>z</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Include the "kind:" key in kind field</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P valign=3D"top"><I>t</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P valign=3D"top">Type and name of a variable or typedef as =
+"typeref:" field=20
+      [enabled]</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">Each letter or group of =
+letters may=20
+be preceded by either =92+=92 to add it to the default set, or =
+=92&#8722;=92 to exclude it. In=20
+the absence of any preceding =92+=92 or =92&#8722;=92 sign, only those =
+kinds explicitly listed=20
+in <I>flags</I> will be included in the output (i.e. overriding the =
+default=20
+set). This option is ignored if the option =
+<B>&#8722;&#8722;format</B>=3D<I>1</I> has been=20
+specified. The default value of this option is <I>fkst</I>.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;file&#8722;scope</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Indicates whether tags scoped only for a =
+single file=20
+(i.e. tags which cannot be seen outside of the file in which they are =
+defined,=20
+such as "static" tags) should be included in the output. See, also, the=20
+<B>&#8722;h</B> option. This option is enabled by default.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;filter</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Causes <B>ctags</B> to behave as a filter, =
+reading=20
+source file names from standard input and printing their tags to =
+standard output=20
+on a file-by-file basis. If <B>&#8722;&#8722;sorted</B> is enabled, tags =
+are sorted only=20
+within the source file in which they are defined. File names are read =
+from=20
+standard input in line-oriented input mode (see note for <B>&#8722;L</B> =
+option) and=20
+only after file names listed on the command line or from any file =
+supplied using=20
+the <B>&#8722;L</B> option. When this option is enabled, the options =
+<B>&#8722;f</B>,=20
+<B>&#8722;o</B>, and <B>&#8722;&#8722;totals</B> are ignored. This =
+option is quite esoteric and is=20
+disabled by default. This option must appear before the first file =
+name.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;filter&#8722;terminator</B>=3D<I>string</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies a string to print to standard =
+output=20
+following the tags for each file name parsed when the =
+<B>&#8722;&#8722;filter</B> option is=20
+enabled. This may permit an application reading the output of ctags to =
+determine=20
+when the output for each file is finished. Note that if the file name =
+read is a=20
+directory and <B>&#8722;&#8722;recurse</B> is enabled, this string will =
+be printed only one=20
+once at the end of all tags found for by descending the directory. This =
+string=20
+will always be separated from the last tag line for the file by its =
+terminating=20
+newline. This option is quite esoteric and is empty by default. This =
+option must=20
+appear before the first file name.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;format</B>=3D<I>level</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Change the format of the output tag file. =
+Currently=20
+the only valid values for <I>level</I> are <I>1</I> or <I>2</I>. Level 1 =
+
+specifies the original tag file format and level 2 specifies a new =
+extended=20
+format containing extension fields (but in a manner which retains=20
+backward-compatibility with original <B>vi</B>(1) implementations). The =
+default=20
+level is 2. This option must appear before the first file name. [Ignored =
+in=20
+etags mode]</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;&#8722;help</B></P>
+<P style=3D"MARGIN-LEFT: 18%">Prints to standard output a detailed usage =
+
+description, and then exits.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;if0</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Indicates a preference as to whether code =
+within an=20
+"#if 0" branch of a preprocessor conditional should be examined for =
+non-macro=20
+tags (macro tags are always included). Because the intent of this =
+construct is=20
+to disable code, the default value of this option is <I>no</I>. Note =
+that this=20
+indicates a preference only and does not guarantee skipping code within =
+an "#if=20
+0" branch, since the fall-back algorithm used to generate tags when =
+preprocessor=20
+conditionals are too complex follows all branches of a conditional. This =
+option=20
+is disabled by default.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;&lt;LANG&gt;&#8722;kinds</B>=3D<I>[+|&#8722;]kinds<=
+/I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies a list of language-specific =
+kinds of tags=20
+(or kinds) to include in the output file for a particular language, =
+where=20
+<B>&lt;LANG&gt;</B> is case-insensitive and is one of the built-in =
+language=20
+names (see the <B>&#8722;&#8722;list&#8722;languages</B> option for a =
+complete list). The=20
+parameter <I>kinds</I> is a group of one-letter flags designating kinds =
+of tags=20
+(particular to the language) to either include or exclude from the =
+output. The=20
+specific sets of flags recognized for each language, their meanings and =
+defaults=20
+may be list using the <B>&#8722;&#8722;list&#8722;kinds</B> option. Each =
+letter or group of=20
+letters may be preceded by either =92+=92 to add it to, or =92&#8722;=92 =
+to remove it from,=20
+the default set. In the absence of any preceding =92+=92 or =
+=92&#8722;=92 sign, only those=20
+kinds explicitly listed in <I>kinds</I> will be included in the output =
+(i.e.=20
+overriding the default for the specified language).</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">As an example for the C =
+language,=20
+in order to add prototypes and external variable declarations to the =
+default set=20
+of tag kinds, but exclude macros, use =
+<B>&#8722;&#8722;c&#8722;kinds</B>=3D<I>+px&#8722;d</I>; to include=20
+only tags for functions, use =
+<B>&#8722;&#8722;c&#8722;kinds</B>=3D<I>f</I>.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;langdef</B>=3D<I>name</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Defines a new user-defined language, =
+<I>name</I>, to=20
+be parsed with regular expressions. Once defined, <I>name</I> may be =
+used in=20
+other options taking language names. The typical use of this option is =
+to first=20
+define the language, then map file names to it using =
+<I>&#8722;&#8722;langmap</I>, then=20
+specify regular expressions using =
+<I>&#8722;&#8722;regex&#8722;&lt;LANG&gt;</I> to define how its=20
+tags are found.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;langmap</B>=3D<I>map[,map[...]]</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Controls how file names are mapped to =
+languages (see=20
+the <B>&#8722;&#8722;list&#8722;maps</B> option). Each comma-separated =
+<I>map</I> consists of the=20
+language name (either a built-in or user-defined language), a colon, and =
+a list=20
+of file extensions and/or file name patterns. A file extension is =
+specified by=20
+preceding the extension with a period (e.g. ".c"). A file name pattern =
+is=20
+specified by enclosing the pattern in parentheses (e.g. =
+"([Mm]akefile)"). If=20
+appropriate support is available from the runtime library of your C =
+compiler,=20
+then the file name pattern may contain the usual shell wildcards common =
+on Unix=20
+(be sure to quote the option parameter to protect the wildcards from =
+being=20
+expanded by the shell before being passed to <B>ctags</B>). You can =
+determine if=20
+shell wildcards are available on your platform by examining the output =
+of the=20
+<B>&#8722;&#8722;version</B> option, which will include "+wildcards" in =
+the compiled feature=20
+list; otherwise, the file name patterns are matched against file names =
+using a=20
+simple textual comparison. When mapping a file extension, it will first =
+be=20
+unmapped from any other languages.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">If the first character in =
+a map is=20
+a plus sign, then the extensions and file name patterns in that map will =
+be=20
+appended to the current map for that language; otherwise, the map will =
+replace=20
+the current map. For example, to specify that only files with extensions =
+of .c=20
+and .x are to be treated as C language files, use=20
+"<B>&#8722;&#8722;langmap</B>=3D<I>c:.c.x</I>"; to also add files with =
+extensions of .j as=20
+Java language files, specify =
+"<B>&#8722;&#8722;langmap</B>=3D<I>c:.c.x,java:+.j</I>". To map=20
+makefiles (e.g. files named either "Makefile", "makefile", or having the =
+
+extension ".mak") to a language called "make", specify=20
+"<B>&#8722;&#8722;langmap</B>=3D<I>make:([Mm]akefile).mak</I>". To map =
+files having no=20
+extension, specify a period not followed by a non-period character (e.g. =
+".",=20
+"..x", ".x."). To clear the mapping for a particular language (thus =
+inhibiting=20
+automatic generation of tags for that language), specify an empty =
+extension list=20
+(e.g. "<B>&#8722;&#8722;langmap</B>=3D<I>fortran:</I>"). To restore the =
+default language=20
+mappings for all a particular language, supply the keyword "default" for =
+the=20
+mapping. To specify restore the default language mappings for all =
+languages,=20
+specify "<B>&#8722;&#8722;langmap</B>=3D<I>default</I>". Note that file =
+extensions are tested=20
+before file name patterns when inferring the language of a file.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;language&#8722;force</B>=3D<I>language</I></P>
+<P style=3D"MARGIN-LEFT: 18%">By default, <B>ctags</B> automatically =
+selects the=20
+language of a source file, ignoring those files whose language cannot be =
+
+determined (see <B>SOURCE FILES</B>, above). This option forces the =
+specified=20
+<I>language</I> (case-insensitive; either built-in or user-defined) to =
+be used=20
+for every supplied file instead of automatically selecting the language =
+based=20
+upon its extension. In addition, the special value <I>auto</I> indicates =
+that=20
+the language should be automatically selected (which effectively =
+disables this=20
+option).</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;languages</B>=3D<I>[+|&#8722;]list</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies the languages for which tag =
+generation is=20
+enabled, with <I>list</I> containing a comma-separated list of language =
+names=20
+(case-insensitive; either built-in or user-defined). If the first =
+language of=20
+<I>list</I> is not preceded by either a =92+=92 or =92&#8722;=92, the =
+current list will be=20
+cleared before adding or removing the languages in <I>list</I>. Until a =
+=92&#8722;=92 is=20
+encountered, each language in the list will be added to the current =
+list. As=20
+either the =92+=92 or =92&#8722;=92 is encountered in the list, the =
+languages following it are=20
+added or removed from the current list, respectively. Thus, it becomes =
+simple to=20
+replace the current list with a new one, or to add or remove languages =
+from the=20
+current list. The actual list of files for which tags will be generated =
+depends=20
+upon the language extension mapping in effect (see the =
+<B>&#8722;&#8722;langmap</B> option).=20
+Note that all languages, including user-defined languages are enabled =
+unless=20
+explicitly disabled using this option. Language names included in =
+<I>list</I>=20
+may be any built-in language or one previously defined with =
+<B>&#8722;&#8722;langdef</B>.=20
+The default is "all", which is also accepted as a valid argument. See =
+the=20
+<B>&#8722;&#8722;list&#8722;languages</B> option for a complete list of =
+the built-in language=20
+names.</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;&#8722;license</B></P>
+<P style=3D"MARGIN-LEFT: 18%">Prints a summary of the software license =
+to standard=20
+output, and then exits.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;line&#8722;directives</B>[=3D<I>yes</I>|<I>no</I>]<=
+/P>
+<P style=3D"MARGIN-LEFT: 18%">Specifies whether "#line" directives =
+should be=20
+recognized. These are present in the output of preprocessors and contain =
+the=20
+line number, and possibly the file name, of the original source file(s) =
+from=20
+which the preprocessor output file was generated. When enabled, this =
+option will=20
+cause <B>ctags</B> to generate tag entries marked with the file names =
+and line=20
+numbers of their locations original source file(s), instead of their =
+actual=20
+locations in the preprocessor output. The actual file names placed into =
+the tag=20
+file will have the same leading path components as the preprocessor =
+output file,=20
+since it is assumed that the original source files are located relative =
+to the=20
+preprocessor output file (unless, of course, the #line directive =
+specifies an=20
+absolute path). This option is off by default. <B>Note:</B> This option =
+is=20
+generally only useful when used together with the =
+<B>&#8722;&#8722;excmd</B>=3D<I>number</I>=20
+(<B>&#8722;n</B>) option. Also, you may have to use either the =
+<B>&#8722;&#8722;langmap</B> or=20
+<B>&#8722;&#8722;language&#8722;force</B> option if the extension of the =
+preprocessor output file=20
+is not known to <B>ctags</B>.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;links</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Indicates whether symbolic links (if =
+supported)=20
+should be followed. When disabled, symbolic links are ignored. This =
+option is on=20
+by default.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;list&#8722;kinds</B>[=3D<I>language</I>|<I>all</I>]=
+</P>
+<P style=3D"MARGIN-LEFT: 18%">Lists the tag kinds recognized for either =
+the=20
+specified language or all languages, and then exits. Each kind of tag =
+recorded=20
+in the tag file is represented by a one-letter flag, which is also used =
+to=20
+filter the tags placed into the output through use of the=20
+<B>&#8722;&#8722;&lt;LANG&gt;&#8722;kinds</B> option. Note that some =
+languages and/or tag kinds=20
+may be implemented using regular expressions and may not be available if =
+regex=20
+support is not compiled into <B>ctags</B> (see the =
+<B>&#8722;&#8722;regex&#8722;&lt;LANG&gt;</B>=20
+option). Each kind listed is enabled unless followed by "[off]".</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;list&#8722;maps</B>[=3D<I>language</I>|<I>all</I>]<=
+/P>
+<P style=3D"MARGIN-LEFT: 18%">Lists the file extensions and file name =
+patterns=20
+which associate a file name with a language for either the specified =
+language or=20
+all languages, and then exits. See the <B>&#8722;&#8722;langmap</B> =
+option, and <B>SOURCE=20
+FILES</B>, above.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;list&#8722;languages</B></P>
+<P style=3D"MARGIN-LEFT: 18%">Lists the names of the languages =
+understood by=20
+<B>ctags</B>, and then exits. These language names are case insensitive =
+and may=20
+be used in the <B>&#8722;&#8722;language&#8722;force</B>, =
+<B>&#8722;&#8722;languages</B>,=20
+<B>&#8722;&#8722;&lt;LANG&gt;&#8722;kinds</B>, and =
+<B>&#8722;&#8722;regex&#8722;&lt;LANG&gt;</B> options.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;options</B>=3D<I>file</I></P>
+<P style=3D"MARGIN-LEFT: 18%">Read additional options from <I>file</I>. =
+The file=20
+should contain one option per line. As a special case, if=20
+<B>&#8722;&#8722;options</B>=3D<I>NONE</I> is specified as the first =
+option on the command=20
+line, it will disable the automatic reading of any configuration options =
+from=20
+either a file or the environment (see <B>FILES</B>).</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;recurse</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Recurse into directories encountered in =
+the list of=20
+supplied files. If the list of supplied files is empty and no file list =
+is=20
+specified with the <B>&#8722;L</B> option, then the current directory =
+(i.e. ".") is=20
+assumed. Symbolic links are followed. If you don=92t like these =
+behaviors, either=20
+explicitly specify the files or pipe the output of <B>find</B>(1) into =
+<B>ctags=20
+&#8722;L&#8722;</B> instead. <B>Note:</B> This option is not supported =
+on all platforms at=20
+present. It is available if the output of the <B>&#8722;&#8722;help</B> =
+option includes this=20
+option. See, also, the <B>&#8722;&#8722;exclude</B> to limit =
+recursion.</P>
+<P=20
+style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;regex&#8722;&lt;LANG&gt;</B>=3D<I>/regexp/replaceme=
+nt/[kind&#8722;spec/][flags]</I></P>
+<P style=3D"MARGIN-LEFT: 18%">The <I>/regexp/replacement/</I> pair =
+define a=20
+regular expression replacement pattern, similar in style to <B>sed</B>=20
+substitution commands, with which to generate tags from source files =
+mapped to=20
+the named language, <B>&lt;LANG&gt;</B>, (case-insensitive; either a =
+built-in or=20
+user-defined language). The regular expression, <I>regexp</I>, defines =
+an=20
+extended regular expression (roughly that used by <B>egrep</B>(1)), =
+which is=20
+used to locate a single source line containing a tag and may specify tab =
+
+characters using \t. When a matching line is found, a tag will be =
+generated for=20
+the name defined by <I>replacement</I>, which generally will contain the =
+special=20
+back-references \1 through \9 to refer to matching sub-expression groups =
+within=20
+<I>regexp</I>. The =92/=92 separator characters shown in the parameter =
+to the option=20
+can actually be replaced by any character. Note that whichever separator =
+
+character is used will have to be escaped with a backslash (=92\=92) =
+character=20
+wherever it is used in the parameter as something other than a =
+separator. The=20
+regular expression defined by this option is added to the current list =
+of=20
+regular expressions for the specified language unless the parameter is =
+omitted,=20
+in which case the current list is cleared.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">Unless modified by =
+<I>flags</I>,=20
+<I>regexp</I> is interpreted as a Posix extended regular expression. The =
+
+<I>replacement</I> should expand for all matching lines to a non-empty =
+string of=20
+characters, or a warning message will be reported. An optional kind =
+specifier=20
+for tags matching <I>regexp</I> may follow <I>replacement</I>, which =
+will=20
+determine what kind of tag is reported in the "kind" extension field =
+(see <B>TAG=20
+FILE FORMAT</B>, below). The full form of <I>kind&#8722;spec</I> is in =
+the form of a=20
+single letter, a comma, a name (without spaces), a comma, a description, =
+
+followed by a separator, which specify the short and long forms of the =
+kind=20
+value and its textual description (displayed using =
+<B>&#8722;&#8722;list&#8722;kinds</B>). Either=20
+the kind name and/or the description may be omitted. If =
+<I>kind&#8722;spec</I> is=20
+omitted, it defaults to "<I>r,regex</I>". Finally, <I>flags</I> are one =
+or more=20
+single-letter characters having the following effect upon the =
+interpretation of=20
+<I>regexp</I>:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>b</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">The pattern is =
+interpreted as a=20
+      Posix basic regular expression.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>e</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">The pattern is =
+interpreted as a=20
+      Posix extended regular expression (default).</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"23%"></TD>
+    <TD width=3D"2%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>i</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">The regular expression =
+is to be=20
+      applied in a case-insensitive =
+manner.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">Note that this option is =
+available=20
+only if <B>ctags</B> was compiled with support for regular expressions, =
+which=20
+depends upon your platform. You can determine if support for regular =
+expressions=20
+is compiled in by examining the output of the =
+<B>&#8722;&#8722;version</B> option, which=20
+will include "+regex" in the compiled feature list.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 18%">For more information on =
+the regular=20
+expressions used by <B>ctags</B>, see either the <B>regex(5,7)</B> man =
+page, or=20
+the GNU info documentation for regex (e.g. "info regex").</P>
+<P=20
+style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;sort</B>[=3D<I>yes</I>|<I>no</I>|<I>foldcase</I>]</=
+P>
+<P style=3D"MARGIN-LEFT: 18%">Indicates whether the tag file should be =
+sorted on=20
+the tag name (default is <I>yes</I>). Note that the original =
+<B>vi</B>(1)=20
+required sorted tags. The <I>foldcase</I> value specifies case =
+insensitive (or=20
+case-folded) sorting. Fast binary searches of tag files sorted with =
+case-folding=20
+will require special support from tools using tag files, such as that =
+found in=20
+the ctags readtags library, or Vim version 6.2 or higher (using "set=20
+ignorecase"). This option must appear before the first file name. =
+[Ignored in=20
+etags mode]</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;tag&#8722;relative</B>[=3D<I>yes</I>|<I>no</I>]</P>=
+
+<P style=3D"MARGIN-LEFT: 18%">Indicates that the file paths recorded in =
+the tag=20
+file should be relative to the directory containing the tag file, rather =
+than=20
+relative to the current directory, unless the files supplied on the =
+command line=20
+are specified with absolute paths. This option must appear before the =
+first file=20
+name. The default is <I>yes</I> when running in etags mode (see the =
+<B>&#8722;e</B>=20
+option), <I>no</I> otherwise.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;totals</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Prints statistics about the source files =
+read and=20
+the tag file written during the current invocation of <B>ctags</B>. This =
+option=20
+is off by default. This option must appear before the first file =
+name.</P>
+<P style=3D"MARGIN-LEFT: =
+11%"><B>&#8722;&#8722;verbose</B>[=3D<I>yes</I>|<I>no</I>]</P>
+<P style=3D"MARGIN-LEFT: 18%">Enable verbose mode. This prints out =
+information on=20
+option processing and a brief message describing what action is being =
+taken for=20
+each file considered by <B>ctags</B>. Normally, <B>ctags</B> does not =
+read=20
+command line arguments until after options are read from the =
+configuration files=20
+(see <B>FILES</B>, below) and the <B>CTAGS</B> environment variable. =
+However, if=20
+this option is the first argument on the command line, it will take =
+effect=20
+before any options are read from these sources. The default is =
+<I>no</I>.</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>&#8722;&#8722;version</B></P>
+<P style=3D"MARGIN-LEFT: 18%">Prints a version identifier for =
+<B>ctags</B> to=20
+standard output, and then exits. This is guaranteed to always contain =
+the string=20
+"Exuberant Ctags".</P><A name=3D"OPERATIONAL DETAILS"></A>
+<H2>OPERATIONAL DETAILS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">As <B>ctags</B> considers =
+each file=20
+name in turn, it tries to determine the language of the file by applying =
+the=20
+following three tests in order: if the file extension has been mapped to =
+a=20
+language, if the file name matches a shell pattern mapped to a language, =
+and=20
+finally if the file is executable and its first line specifies an =
+interpreter=20
+using the Unix-style "#!" specification (if supported on the platform). =
+If a=20
+language was identified, the file is opened and then the appropriate =
+language=20
+parser is called to operate on the currently open file. The parser =
+parses=20
+through the file and adds an entry to the tag file for each language =
+object it=20
+is written to handle. See <B>TAG FILE FORMAT</B>, below, for details on =
+these=20
+entries.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">This implementation of =
+<B>ctags</B>=20
+imposes no formatting requirements on C code as do legacy =
+implementations. Older=20
+implementations of ctags tended to rely upon certain formatting =
+assumptions in=20
+order to help it resolve coding dilemmas caused by preprocessor=20
+conditionals.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">In general, <B>ctags</B> =
+tries to=20
+be smart about conditional preprocessor directives. If a preprocessor=20
+conditional is encountered within a statement which defines a tag, =
+<B>ctags</B>=20
+follows only the first branch of that conditional (except in the special =
+case of=20
+"#if 0", in which case it follows only the last branch). The reason for =
+this is=20
+that failing to pursue only one branch can result in ambiguous syntax, =
+as in the=20
+following example:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">#ifdef TWO_ALTERNATIVES =
+<BR>struct=20
+{ <BR>#else <BR>union { <BR>#endif</P>
+<P style=3D"MARGIN-LEFT: 28%">short a; <BR>long b;</P>
+<P style=3D"MARGIN-LEFT: 22%">}</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Both branches cannot be =
+followed,=20
+or braces become unbalanced and <B>ctags</B> would be unable to make =
+sense of=20
+the syntax.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">If the application of =
+this=20
+heuristic fails to properly parse a file, generally due to complicated =
+and=20
+inconsistent pairing within the conditionals, <B>ctags</B> will retry =
+the file=20
+using a different heuristic which does not selectively follow =
+conditional=20
+preprocessor branches, but instead falls back to relying upon a closing =
+brace=20
+("}") in column 1 as indicating the end of a block once any brace =
+imbalance=20
+results from following a #if conditional branch.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%"><B>Ctags</B> will also =
+try to=20
+specially handle arguments lists enclosed in double sets of parentheses =
+in order=20
+to accept the following conditional construct:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">extern void foo =
+__ARGS((int one,=20
+char two));</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Any name immediately =
+preceding the=20
+"((" will be automatically ignored and the previous name will be =
+used.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">C++ operator definitions =
+are=20
+specially handled. In order for consistency with all types of operators=20
+(overloaded and conversion), the operator name in the tag file will =
+always be=20
+preceded by the string "operator " (i.e. even if the actual operator =
+definition=20
+was written as "operator&lt;&lt;").</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">After creating or =
+appending to the=20
+tag file, it is sorted by the tag name, removing identical tag =
+lines.</P><A=20
+name=3D"TAG FILE FORMAT"></A>
+<H2>TAG FILE FORMAT</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">When not running in etags =
+mode,=20
+each entry in the tag file consists of a separate line, each looking =
+like this=20
+in the most general case:</P>
+<P=20
+style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: =
+12%">tag_name&lt;TAB&gt;file_name&lt;TAB&gt;ex_cmd;"&lt;TAB&gt;extension_=
+fields</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">The fields and separators =
+of these=20
+lines are specified as follows:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"17%"></TD>
+    <TD width=3D"3%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">1.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">tag name</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"17%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">2.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P valign=3D"top">single tab character</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"17%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">3.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P valign=3D"top">name of the file in which the object associated =
+with the=20
+      tag is located</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"17%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">4.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P valign=3D"top">single tab character</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"17%"></TD>
+    <TD width=3D"3%">
+      <P valign=3D"top">5.</P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P valign=3D"top">EX command used to locate the tag within the =
+file;=20
+      generally a search pattern (either /pattern/ or ?pattern?) or line =
+number=20
+      (see <B>&#8722;&#8722;excmd</B>). Tag file format 2 (see =
+<B>&#8722;&#8722;format</B>) extends this=20
+      EX command under certain circumstances to include a set of =
+extension=20
+      fields (described below) embedded in an EX comment immediately =
+appended to=20
+      the EX command, which leaves it backward-compatible with original=20
+      <B>vi</B>(1) implementations.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">A few special tags are =
+written into=20
+the tag file for internal purposes. These tags are composed in such a =
+way that=20
+they always sort to the top of the file. Therefore, the first two =
+characters of=20
+these tags are used a magic number to detect a tag file for purposes of=20
+determining whether a valid tag file is being overwritten rather than a =
+source=20
+file.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Note that the name of =
+each source=20
+file will be recorded in the tag file exactly as it appears on the =
+command line.=20
+Therefore, if the path you specified on the command line was relative to =
+the=20
+current directory, then it will be recorded in that same manner in the =
+tag file.=20
+See, however, the <B>&#8722;&#8722;tag&#8722;relative</B> option for how =
+this behavior can be=20
+modified.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Extension fields are =
+tab-separated=20
+key-value pairs appended to the end of the EX command as a comment, as =
+described=20
+above. These key value pairs appear in the general form=20
+"<I>key</I>:<I>value</I>". Their presence in the lines of the tag file =
+are=20
+controlled by the <B>&#8722;&#8722;fields</B> option. The possible keys =
+and the meaning of=20
+their values are as follows:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>access</I></P></TD>
+    <TD width=3D"9%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Indicates the =
+visibility of this=20
+      class member, where <I>value</I> is specific to the =
+language.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P><I>file</I></P></TD>
+    <TD width=3D"9%"></TD>
+    <TD width=3D"71%">
+      <P>Indicates that the tag has file-limited visibility. This key =
+has no=20
+      corresponding value.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P><I>kind</I></P></TD>
+    <TD width=3D"9%"></TD>
+    <TD width=3D"71%">
+      <P>Indicates the type, or kind, of tag. Its value is either one of =
+the=20
+      corresponding one-letter flags described under the various=20
+      <B>&#8722;&#8722;&lt;LANG&gt;&#8722;kinds</B> options above, or a =
+full name. It is permitted=20
+      (and is, in fact, the default) for the key portion of this field =
+to be=20
+      omitted. The optional behaviors are controlled with the =
+<B>&#8722;&#8722;fields</B>=20
+      option.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-LEFT: 11%"><I>implementation</I></P>
+<P style=3D"MARGIN-LEFT: 29%">When present, this indicates a limited=20
+implementation (abstract vs. concrete) of a routine or class, where =
+<I>value</I>=20
+is specific to the language ("virtual" or "pure virtual" for C++; =
+"abstract" for=20
+Java).</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P style=3D"MARGIN-TOP: 1em" =
+valign=3D"top"><I>inherits</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">When present, =
+<I>value</I>. is a=20
+      comma-separated list of classes from which this class is derived =
+(i.e.=20
+      inherits from).</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P><I>signature</I></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P>When present, <I>value</I> is a language-dependent =
+representation of=20
+      the signature of a routine. A routine signature in its complete =
+form=20
+      specifies the return type of a routine and its formal argument =
+list. This=20
+      extension field is presently supported only for C-based languages =
+and does=20
+      not include the return type.</P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">In addition, information =
+on the=20
+scope of the tag definition may be available, with the key portion equal =
+to some=20
+language-dependent construct name and its value the name declared for =
+that=20
+construct in the program. This scope entry indicates the scope in which =
+the tag=20
+was found. For example, a tag generated for a C structure member would =
+have a=20
+scope looking like "struct:myStruct".</P><A name=3D"HOW TO USE WITH =
+VI"></A>
+<H2>HOW TO USE WITH VI</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Vi will, by default, =
+expect a tag=20
+file by the name "tags" in the current directory. Once the tag file is =
+built,=20
+the following commands exercise the tag indexing feature:</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>vi &#8722;t =
+tag</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Start vi and position =
+the cursor=20
+      at the file and line where "tag" is defined.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>:ta =
+tag</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Find a tag.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>Ctrl-]</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Find the tag under the =
+
+    cursor.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"14%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>Ctrl-T</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"71%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Return to previous =
+location before=20
+      jump to tag (not widely =
+implemented).</P></TD></TR></TBODY></TABLE><A=20
+name=3D"HOW TO USE WITH GNU EMACS"></A>
+<H2>HOW TO USE WITH GNU EMACS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Emacs will, by default, =
+expect a=20
+tag file by the name "TAGS" in the current directory. Once the tag file =
+is=20
+built, the following commands exercise the tag indexing feature: =
+<B><BR>M-x=20
+visit&#8722;tags&#8722;table &lt;RET&gt; FILE &lt;RET&gt;</B></P>
+<P style=3D"MARGIN-LEFT: 26%">Select the tag file, "FILE", to use.</P>
+<P style=3D"MARGIN-LEFT: 11%"><B>M-. [TAG] &lt;RET&gt;</B></P>
+<P style=3D"MARGIN-LEFT: 26%">Find the first definition of TAG. The =
+default tag is=20
+the identifier under the cursor.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"11%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>M-*</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"72%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Pop back to where you =
+previously=20
+      invoked "M-.".</P></TD>
+    <TD width=3D"2%"></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"11%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>C-u =
+M-.</B></P></TD>
+    <TD width=3D"4%"></TD>
+    <TD width=3D"72%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">Find the next =
+definition for the=20
+      last tag.</P></TD>
+    <TD width=3D"2%"></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">For more commands, see =
+the=20
+<I>Tags</I> topic in the Emacs info document.</P><A=20
+name=3D"HOW TO USE WITH NEDIT"></A>
+<H2>HOW TO USE WITH NEDIT</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">NEdit version 5.1 and =
+later can=20
+handle the new extended tag file format (see =
+<B>&#8722;&#8722;format</B>). To make NEdit use=20
+the tag file, select "File&#8722;&gt;Load Tags File". To jump to the =
+definition for a=20
+tag, highlight the word, the press Ctrl-D. NEdit 5.1 can can read =
+multiple tag=20
+files from different directories. Setting the X resource nedit.tagFile =
+to the=20
+name of a tag file instructs NEdit to automatically load that tag file =
+at=20
+startup time.</P><A name=3DCAVEATS></A>
+<H2>CAVEATS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Because <B>ctags</B> is =
+neither a=20
+preprocessor nor a compiler, use of preprocessor macros can fool =
+<B>ctags</B>=20
+into either missing tags or improperly generating inappropriate tags. =
+Although=20
+<B>ctags</B> has been designed to handle certain common cases, this is =
+the=20
+single biggest cause of reported problems. In particular, the use of=20
+preprocessor constructs which alter the textual syntax of C can fool=20
+<B>ctags</B>. You can work around many such problems by using the =
+<B>&#8722;I</B>=20
+option.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Note that since =
+<B>ctags</B>=20
+generates patterns for locating tags (see the <B>&#8722;&#8722;excmd</B> =
+option), it is=20
+entirely possible that the wrong line may be found by your editor if =
+there=20
+exists another source line which is identical to the line containing the =
+tag.=20
+The following example demonstrates this condition:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">int variable;</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">/* ... */ <BR>void =
+foo(variable)=20
+<BR>int variable; <BR>{</P>
+<P style=3D"MARGIN-LEFT: 28%">/* ... */</P>
+<P style=3D"MARGIN-LEFT: 22%">}</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Depending upon which =
+editor you use=20
+and where in the code you happen to be, it is possible that the search =
+pattern=20
+may locate the local parameter declaration in foo() before it finds the =
+actual=20
+global variable definition, since the lines (and therefore their search =
+patterns=20
+are identical). This can be avoided by use of the =
+<B>&#8722;&#8722;excmd</B>=3D<I>n</I>=20
+option.</P><A name=3DBUGS></A>
+<H2>BUGS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%"><B>Ctags</B> has more =
+options than=20
+<B>ls</B>(1).</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">When parsing a C++ member =
+function=20
+definition (e.g. "className::function"), <B>ctags</B> cannot determine =
+whether=20
+the scope specifier is a class name or a namespace specifier and always =
+lists it=20
+as a class name in the scope portion of the extension fields. Also, if a =
+C++=20
+function is defined outside of the class declaration (the usual case), =
+the=20
+access specification (i.e. public, protected, or private) and =
+implementation=20
+information (e.g. virtual, pure virtual) contained in the function =
+declaration=20
+are not known when the tag is generated for the function definition. It =
+will,=20
+however be available for prototypes (e.g =
+<B>&#8722;&#8722;c++&#8722;kinds</B>=3D<I>+p</I>).</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">No qualified tags are =
+generated for=20
+language objects inherited into a class.</P><A name=3D"ENVIRONMENT =
+VARIABLES"></A>
+<H2>ENVIRONMENT VARIABLES</H2>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><B>CTAGS</B></P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">If this environment =
+variable=20
+      exists, it will be expected to contain a set of default options =
+which are=20
+      read when <B>ctags</B> starts, after the configuration files =
+listed in=20
+      <B>FILES</B>, below, are read, but before any command line options =
+are=20
+      read. Options appearing on the command line will override options=20
+      specified in this variable. Only options will be read from this =
+variable.=20
+      Note that all white space in this variable is considered a =
+separator,=20
+      making it impossible to pass an option parameter containing an =
+embedded=20
+      space. If this is a problem, use a configuration file =
+instead.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P><B>ETAGS</B></P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P>Similar to the <B>CTAGS</B> variable above, this variable, if =
+found,=20
+      will be read when <B>etags</B> starts. If this variable is not =
+found,=20
+      <B>etags</B> will try to use <B>CTAGS</B> instead.</P></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"9%">
+      <P><B>TMPDIR</B></P></TD>
+    <TD width=3D"3%"></TD>
+    <TD width=3D"77%">
+      <P>On Unix-like hosts where mkstemp() is available, the value of =
+this=20
+      variable specifies the directory in which to place temporary =
+files. This=20
+      can be useful if the size of a temporary file becomes too large to =
+fit on=20
+      the partition holding the default temporary directory defined at=20
+      compilation time. <B>ctags</B> creates temporary files only if =
+either (1)=20
+      an emacs-style tag file is being generated, (2) the tag file is =
+being sent=20
+      to standard output, or (3) the program was compiled to use an =
+internal=20
+      sort algorithm to sort the tag files instead of the the sort =
+utility of=20
+      the operating system. If the sort utility of the operating system =
+is being=20
+      used, it will generally observe this variable also. Note that if=20
+      <B>ctags</B> is setuid, the value of TMPDIR will be=20
+  ignored.</P></TD></TR></TBODY></TABLE><A name=3DFILES></A>
+<H2>FILES</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%"><I>/ctags.cnf (on MSDOS, =
+MSWindows=20
+only) <BR>/etc/ctags.conf <BR>/usr/local/etc/ctags.conf <BR>$HOME/.ctags =
+
+<BR>$HOME/ctags.cnf (on MSDOS, MSWindows only) <BR>.ctags <BR>ctags.cnf =
+(on=20
+MSDOS, MSWindows only)</I></P>
+<P style=3D"MARGIN-LEFT: 22%">If any of these configuration files exist, =
+each will=20
+be expected to contain a set of default options which are read in the =
+order=20
+listed when <B>ctags</B> starts, but before the <B>CTAGS</B> environment =
+
+variable is read or any command line options are read. This makes it =
+possible to=20
+set up site-wide, personal or project-level defaults. It is possible to =
+compile=20
+<B>ctags</B> to read an additional configuration file before any of =
+those shown=20
+above, which will be indicated if the output produced by the =
+<B>&#8722;&#8722;version</B>=20
+option lists the "custom-conf" feature. Options appearing in the =
+<B>CTAGS</B>=20
+environment variable or on the command line will override options =
+specified in=20
+these files. Only options will be read from these files. Note that the =
+option=20
+files are read in line-oriented mode in which spaces are significant =
+(since=20
+shell quoting is not possible). Each line of the file is read as one =
+command=20
+line parameter (as if it were quoted with single quotes). Therefore, use =
+new=20
+lines to indicate separate command-line arguments.</P>
+<TABLE border=3D0 rules=3Dnone cellSpacing=3D0 cellPadding=3D0 =
+width=3D"100%"=20
+  frame=3Dvoid><TBODY>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"6%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>tags</I></P></TD>
+    <TD width=3D"5%"></TD>
+    <TD width=3D"58%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">The default tag file =
+created by=20
+      <B>ctags</B>.</P></TD>
+    <TD width=3D"20%"></TD>
+  <TR vAlign=3Dtop align=3Dleft>
+    <TD width=3D"11%"></TD>
+    <TD width=3D"6%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top"><I>TAGS</I></P></TD>
+    <TD width=3D"5%"></TD>
+    <TD width=3D"58%">
+      <P style=3D"MARGIN-TOP: 1em" valign=3D"top">The default tag file =
+created by=20
+      <B>etags</B>.</P></TD>
+    <TD width=3D"20%"></TD></TR></TBODY></TABLE><A name=3D"SEE =
+ALSO"></A>
+<H2>SEE ALSO</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">The official Exuberant =
+Ctags web=20
+site at:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: =
+22%">http://ctags.sourceforge.net</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Also <B>ex</B>(1), =
+<B>vi</B>(1),=20
+<B>elvis</B>, or, better yet, <B>vim</B>, the official editor of =
+<B>ctags</B>.=20
+For more information on <B>vim</B>, see the VIM Pages web site at:</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">http://www.vim.org/</P><A =
+
+name=3DAUTHOR></A>
+<H2>AUTHOR</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Darren Hiebert =
+&lt;dhiebert at=20
+users.sourceforge.net&gt; <BR>http://DarrenHiebert.com/</P><A=20
+name=3DMOTIVATION></A>
+<H2>MOTIVATION</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">"Think ye at all times of =
+rendering=20
+some service to every member of the human race."</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">"All effort and exertion =
+put forth=20
+by man from the fullness of his heart is worship, if it is prompted by =
+the=20
+highest motives and the will to do service to humanity."</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 22%">&#8722;&#8722; From the =
+Baha=92i Writings</P><A=20
+name=3DCREDITS></A>
+<H2>CREDITS</H2>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">This version of =
+<B>ctags</B> was=20
+originally derived from and inspired by the ctags program by Steve =
+Kirkendall=20
+&lt;kirkenda@cs.pdx.edu&gt; that comes with the Elvis vi clone (though =
+virtually=20
+none of the original code remains).</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">Credit is also due Bram =
+Moolenaar=20
+&lt;Bram@vim.org&gt;, the author of <B>vim</B>, who has devoted so much =
+of his=20
+time and energy both to developing the editor as a service to others, =
+and to=20
+helping the orphans of Uganda.</P>
+<P style=3D"MARGIN-TOP: 1em; MARGIN-LEFT: 11%">The section entitled "HOW =
+TO USE=20
+WITH GNU EMACS" was shamelessly stolen from the info page for GNU=20
+<B>etags</B>.</P>
+<HR>
+</BODY></HTML>

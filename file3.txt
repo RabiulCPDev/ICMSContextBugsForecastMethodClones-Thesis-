@@ -1,0 +1,14 @@
+switch (type) {
+case TAG_CLASS:      result = VK_CLASS;           break;
+case TAG_ENUM:       result = VK_ENUMERATION;     break;
+case TAG_ENUMERATOR: result = VK_ENUMERATOR;      break;
+case TAG_EVENT:      result = VK_VARIABLE;        break;
+case TAG_FUNCTION:   result = VK_FUNCTION;        break;
+case TAG_MEMBER:     result = VK_MEMBER;          break;
+case TAG_PROGRAM:    result = VK_PROGRAM;         break;
+case TAG_PROTOTYPE:  result = VK_PROTOTYPE;       break;
+case TAG_TASK:       result = VK_TASK;            break;
+case TAG_TYPEDEF:    result = VK_TYPEDEF;         break;
+case TAG_VARIABLE:   result = VK_VARIABLE;        break;
+case TAG_EXTERN_VAR: result = VK_EXTERN_VARIABLE; break;
+default: Assert ("Bad Vera tag type" == NULL); break; }

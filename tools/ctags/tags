@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+DepthMap	DepthMap.java	/^public DepthMap(Mesh object, int width, int height) {$/;"	m	line:15	class:DepthMap
+DepthMap	DepthMap.java	/^public DepthMap(Mesh object, int width, int height, ProgressListener pl) {$/;"	m	line:19	class:DepthMap
+DepthMap	DepthMap.java	/^public class DepthMap {$/;"	c	line:6
+com.threecam.geometry	DepthMap.java	/^package com.threecam.geometry;$/;"	p	line:2
+computeDepthMap	DepthMap.java	/^public void computeDepthMap() {$/;"	m	line:24	class:DepthMap
+depth	DepthMap.java	/^public double[][] depth;$/;"	f	line:7	class:DepthMap
+getDepth	DepthMap.java	/^public double getDepth(int i, int j) {$/;"	m	line:57	class:DepthMap
+getMap	DepthMap.java	/^public double[][] getMap() {$/;"	m	line:61	class:DepthMap
+getPoints	DepthMap.java	/^public double[][] getPoints() {$/;"	m	line:59	class:DepthMap
+height	DepthMap.java	/^int height;$/;"	f	line:14	class:DepthMap
+map	DepthMap.java	/^double[][] map = null;$/;"	f	line:10	class:DepthMap
+object	DepthMap.java	/^public Mesh object;$/;"	f	line:8	class:DepthMap
+pl	DepthMap.java	/^ProgressListener pl;$/;"	f	line:12	class:DepthMap
+pointmap	DepthMap.java	/^double[][][] pointmap = null;$/;"	f	line:11	class:DepthMap
+points	DepthMap.java	/^double[][] points = null;$/;"	f	line:9	class:DepthMap
+width	DepthMap.java	/^int width;$/;"	f	line:13	class:DepthMap

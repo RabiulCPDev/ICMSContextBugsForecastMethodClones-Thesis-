@@ -1,0 +1,11 @@
+2c2,3
+< line 12: second line
+---
+> line 12: second line changed
+> new added line 13
+7c8
+< line 22: second section2
+---
+> 
+10a12
+> //blank line
