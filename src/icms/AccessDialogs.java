@@ -55,6 +55,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -221,6 +222,13 @@ public class AccessDialogs extends javax.swing.JFrame {
             }
         });
 
+        jButton13.setText("Investigating Bug-replication in SPCP micro-clones ");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,11 +242,11 @@ public class AccessDialogs extends javax.swing.JFrame {
                         .addGap(158, 158, 158)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(153, 153, 153))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +254,7 @@ public class AccessDialogs extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -259,7 +267,8 @@ public class AccessDialogs extends javax.swing.JFrame {
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)
                                 .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,7 +296,9 @@ public class AccessDialogs extends javax.swing.JFrame {
                     .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -420,6 +431,59 @@ public class AccessDialogs extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    
+    // Investigating Bug Replication in SPCP micro-clones
+    
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+            investigation_Bug_replication_SPCP_micro_clones();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+   public void investigation_Bug_replication_SPCP_micro_clones(){
+        DatabaseAccess da = new DatabaseAccess ();
+        CommonParameters cp = new CommonParameters ();
+        InvestigatingBugproneness ib = new InvestigatingBugproneness ();
+        String bugfixcommits = ib.getBugFixCommits();
+        // Connect with database
+        da.connect ();
+        
+        String ctype = JOptionPane.showInputDialog("Clone Type ?");
+        int clonetype = Integer.parseInt (ctype);
+        
+        // show the revision because of bug-fix
+        System.out.println("Revision Created because of bug-fix"+ bugfixcommits);
+       
+        // let's work on every of revision
+        
+        for(int i=1;i<cp.revisionCount;i++){
+            System.out.println("Working on revison no : "+i);
+            
+            // Get specific type of clones clones
+            SingleClone [] clones = da.getClones(i-1, clonetype);
+            for(int j=0;clones[j]!=null;j++){
+                System.out.println(clones[j].revision +" . "+ clones[j].filepath+" "+clones[j].startline+" "+clones[j].endline);
+            }
+            
+            System.out.println("Changes");
+            // get Specific changes
+           SingleChange [] getChanges = da.getChanges(i);
+           for(int j=0;getChanges[j]!=null;j++){
+               System.out.println("Revision :"+getChanges[j].revision +"File Path "+ getChanges[j].filepath+"StartLine: "+getChanges[j].startline+"Endline: "+getChanges[j].endline);
+           }
+           
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        // Disconnect Database
+        da.disconnect ();
+   }
+    
     public void investigation2 ()
     {
         DatabaseAccess da = new DatabaseAccess ();
@@ -684,6 +748,7 @@ public class AccessDialogs extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

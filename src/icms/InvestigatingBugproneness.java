@@ -589,7 +589,8 @@ public class InvestigatingBugproneness extends javax.swing.JFrame {
                 
             }
             br.close();
-            System.out.println ("revisions that were created because of a bug fix = "+bugFixCommits);
+            // Show bugfix revision
+           // System.out.println ("revisions that were created because of a bug fix = "+bugFixCommits);
         }
         catch (Exception e)
         {
