@@ -10,7 +10,7 @@ package icms;
  */
 public class Micro_SPCP {
     
-    get
+    
     
     
     public static void main(String[] args) {
