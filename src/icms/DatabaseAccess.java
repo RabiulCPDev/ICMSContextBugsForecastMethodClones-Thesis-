@@ -104,6 +104,8 @@ class SingleChange
 }
 
 
+
+
 public class DatabaseAccess {
     Connection conn ;
     Statement stmt ;
@@ -571,17 +573,54 @@ public class DatabaseAccess {
                 changes[i].startline = result.getString ("startline");
                 changes[i].endline = result.getString ("endline");
                 changes[i].changetype = result.getString ("changetype");
+                
                 i++;
             }
             disconnect ();
         }
         catch (Exception e)
         {
-            System.out.println ("error. "+e);
+            System.out.println ("error...... "+e);
         }
         
         return changes;     
     }
+    
+    
+    // changes for micro_spcp
+    
+    public SingleChange [] getChangess (int revision)
+    {
+        SingleChange [] changes = new SingleChange [10000];
+        int i =0;
+        
+        try
+        {
+//            connect ();
+            executeQuery ("select * from changes where revision = "+revision);
+            while (result.next ())
+            {
+                changes[i] = new SingleChange ();
+                changes[i].revision = result.getString ("revision");
+                changes[i].filepath = result.getString ("filepath");
+                changes[i].startline = result.getString ("startline");
+                changes[i].endline = result.getString ("endline");
+                changes[i].changetype = result.getString ("changetype");
+                System.out.println("Hello Changess");
+                System.out.println("Revision :"+changes[i].revision +"File Path "+ changes[i].filepath+"StartLine: "+changes[i].startline+"Endline: "+changes[i].endline);
+           
+                i++;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println ("error...... "+e);
+        }
+        
+        return changes;     
+    }
+    
+    
     
     
     public SingleMethod [] getMethods (int revision)

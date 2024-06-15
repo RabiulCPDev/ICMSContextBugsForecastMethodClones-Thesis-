@@ -443,6 +443,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         CommonParameters cp = new CommonParameters ();
         InvestigatingBugproneness ib = new InvestigatingBugproneness ();
         String bugfixcommits = ib.getBugFixCommits();
+        Micro_SPCP mic_spcp = new Micro_SPCP();
         // Connect with database
         da.connect ();
         
@@ -457,18 +458,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         for(int i=1;i<cp.revisionCount;i++){
             System.out.println("Working on revison no : "+i);
             
-            // Get specific type of clones clones
-            SingleClone [] clones = da.getClones(i-1, clonetype);
-            for(int j=0;clones[j]!=null;j++){
-                System.out.println(clones[j].revision +" . "+ clones[j].filepath+" "+clones[j].startline+" "+clones[j].endline);
-            }
-            
-            System.out.println("Changes");
-            // get Specific changes
-           SingleChange [] getChanges = da.getChanges(i);
-           for(int j=0;getChanges[j]!=null;j++){
-               System.out.println("Revision :"+getChanges[j].revision +"File Path "+ getChanges[j].filepath+"StartLine: "+getChanges[j].startline+"Endline: "+getChanges[j].endline);
-           }
+            boolean a = mic_spcp.getResult(i, clonetype);
            
             
         }
