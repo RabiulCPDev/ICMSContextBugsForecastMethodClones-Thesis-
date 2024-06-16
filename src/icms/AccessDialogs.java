@@ -450,6 +450,10 @@ public class AccessDialogs extends javax.swing.JFrame {
         String ctype = JOptionPane.showInputDialog("Clone Type ?");
         int clonetype = Integer.parseInt (ctype);
         
+        // Get SPCP clones
+         SingleSPCPClonePair [] spcpClones = da.getSPCPClones(clonetype);
+        
+        
         // show the revision because of bug-fix
         System.out.println("Revision Created because of bug-fix"+ bugfixcommits);
        
@@ -458,7 +462,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         for(int i=1;i<cp.revisionCount;i++){
             System.out.println("Working on revison no : "+i);
             
-            boolean a = mic_spcp.getResult(i, clonetype);
+            mic_spcp.getResult(i, clonetype,spcpClones);
            
             
         }
@@ -474,6 +478,8 @@ public class AccessDialogs extends javax.swing.JFrame {
         da.disconnect ();
    }
     
+   
+   
     public void investigation2 ()
     {
         DatabaseAccess da = new DatabaseAccess ();

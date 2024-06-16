@@ -4,8 +4,6 @@
  */
 package icms;
 
-import java.sql.ResultSet;
-
 /**
  *
  * @author rabiul
@@ -18,38 +16,38 @@ public class Micro_SPCP {
         InvestigatingBugproneness ib = new InvestigatingBugproneness ();
         String bugfixcommits = ib.getBugFixCommits();
         
-      public void getResult (int revision,int clonetype){
+      public void getResult (int revision,int clonetype,SingleSPCPClonePair []spcpClones){
           
-//            // Get specific type of clones clones
-//            SingleClone [] clones = da.getClones(revision-1, clonetype);
-//            for(int j=0;clones[j]!=null;j++){
-//                System.out.println(clones[j].revision +" . "+ clones[j].filepath+" "+clones[j].startline+" "+clones[j].endline);
-//            }
-//            
-//            System.out.println("Changes");
-//            // get Specific changes
-//           SingleChange [] getChanges = da.getChangess(i);
-//           for(int j=0;getChanges[j]!=null;j++){
-//               System.out.println("Revision :"+getChanges[j].revision +"File Path "+ getChanges[j].filepath+"StartLine: "+getChanges[j].startline+"Endline: "+getChanges[j].endline);
-//           }
+            int flag =0;
+            String rev =Integer.toString(revision);
+            if(bugfixcommits.contains(rev)){
+                flag =1;
+            }else{
+                return;
+            }
+          
+          
+            // Get clones
+            SingleClone [] clones = da.getClones(revision-1, clonetype);
+            for(int j=0;clones[j]!=null;j++){
+                System.out.println("Revision : "+clones[j].revision +" FilePath "+ clones[j].filepath+" Global clone id= "+clones[j].globalcloneid);
+            }
+            
+            System.out.println("Changes");
+            // get changes
+            SingleChange [] getChanges = da.getChangess(revision);
+            for(int j=0;getChanges[j]!=null;j++){
+                System.out.println("Revision : "+getChanges[j].revision +" File Path "+ getChanges[j].filepath);
+            }
 
-                // Get SPCP 
-                SingleSPCPClonePair [] spcpClones = da.getSPCPClones(clonetype);
-                for(int j=0;spcpClones[j]!=null;j++){
-                    System.out.println("globalid 1 ="+ spcpClones[j].globalcloneid1 +"   GlobalColneid 2 = "+spcpClones[j].globalcloneid2);
-                }
+            
+            for(int j=0;spcpClones[j]!=null;j++){
+                System.out.println("globalid 1 = "+ spcpClones[j].globalcloneid1 +"   GlobalColneid 2 = "+spcpClones[j].globalcloneid2);
+            }
+            
             
            
            
       }
         
-    
-    
-    
-
-    
-    public static void main(String[] args) {
-        Micro_SPCP mic_spcp = new Micro_SPCP();
-       mic_spcp.getResult(10, 1);
-    }
 }

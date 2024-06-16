@@ -113,8 +113,8 @@ public class DatabaseAccess {
     CommonParameters cp = new CommonParameters ();
 
     String connectionString = "jdbc:mysql://localhost:3306/carol" ;
-    String userID = "root" ;
-    String password = "Rabiul@34" ;
+    String userID = "root1" ;
+    String password = "Spcp!1234" ;
 
 
     DatabaseAccess ()
@@ -606,9 +606,6 @@ public class DatabaseAccess {
                 changes[i].startline = result.getString ("startline");
                 changes[i].endline = result.getString ("endline");
                 changes[i].changetype = result.getString ("changetype");
-                System.out.println("Hello Changess");
-                System.out.println("Revision :"+changes[i].revision +"File Path "+ changes[i].filepath+"StartLine: "+changes[i].startline+"Endline: "+changes[i].endline);
-           
                 i++;
             }
         }
