@@ -459,13 +459,20 @@ public class AccessDialogs extends javax.swing.JFrame {
        
         // let's work on every of revision
         
-        for(int i=1;i<cp.revisionCount;i++){
-            System.out.println("Working on revison no : "+i);
+        int result = 0;
+        
+        for(int i=2;i<cp.revisionCount;i++){
+            //System.out.println("Working on revison no : "+i);
             
-            mic_spcp.getResult(i, clonetype,spcpClones);
-           
+           if( mic_spcp.getResult(i, clonetype,spcpClones)==1){
+               result++;
+               System.out.println("This revision is micro_spcp : "+i);
+           }else{
+               //System.out.println("This revision is not micro_spcp : "+i);
+           }
             
         }
+        System.out.println("Total micro_spcp = "+ result);
         
         
         
