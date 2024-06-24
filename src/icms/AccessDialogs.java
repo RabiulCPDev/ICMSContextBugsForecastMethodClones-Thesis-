@@ -8,6 +8,8 @@ package icms;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -451,7 +453,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         int clonetype = Integer.parseInt (ctype);
         
         // Get SPCP clones
-         SingleSPCPClonePair [] spcpClones = da.getSPCPClones(clonetype);
+         SingleSPCPClonePair [] spcpClones = da.getSPCPCloness(clonetype);
         
         
         // show the revision because of bug-fix
@@ -459,20 +461,32 @@ public class AccessDialogs extends javax.swing.JFrame {
        
         // let's work on every of revision
         
-        int result = 0;
+        int micro_clones=0,buggy_micro_clone=0,buggy_micro_clone_spcp=0;
+        Map<String,Integer>mapFile= new HashMap<String,Integer>();
+        Map<String,Integer>mapRevision= new HashMap<String,Integer>();
         
         for(int i=2;i<cp.revisionCount;i++){
             //System.out.println("Working on revison no : "+i);
             
-           if( mic_spcp.getResult(i, clonetype,spcpClones)==1){
-               result++;
-               System.out.println("This revision is micro_spcp : "+i);
-           }else{
-               //System.out.println("This revision is not micro_spcp : "+i);
+        SingleClone [] clones = da.getClones(i-1, clonetype);
+        SingleChange [] changes = da.getChangess(i-1);
+        
+           if(mic_spcp.checkMicroClone(i,clonetype,clones,changes)){
+               micro_clones++;
+              
+            String rev =Integer.toString(i-1);
+            if(!bugfixcommits.contains(rev)){
+               buggy_micro_clone++;
+            if(mic_spcp.checkSpcp(spcpClones, clones, changes)){
+                buggy_micro_clone_spcp++;
+            }
            }
+          }
             
         }
-        System.out.println("Total micro_spcp = "+ result);
+        System.out.println("Total Micro-clones = "+ micro_clones);
+        System.out.println("Total Micro-clones with replicated bug = "+buggy_micro_clone);
+        System.out.println("Total Micro-clones with replicated bug+ spcp-clones = "+buggy_micro_clone_spcp);
         
         
         

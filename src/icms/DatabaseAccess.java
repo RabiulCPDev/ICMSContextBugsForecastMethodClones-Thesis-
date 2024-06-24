@@ -379,6 +379,38 @@ public class DatabaseAccess {
         return pairs;
     }
     
+    
+        public SingleSPCPClonePair [] getSPCPCloness (int clonetype)
+    {
+        SingleSPCPClonePair [] pairs = new SingleSPCPClonePair[10000000];
+        int i = 0;
+        try
+        {
+//            connect();
+            executeQuery ("select * from type"+clonetype+"spcpclones");
+            while (result.next())
+            {
+                pairs[i] = new SingleSPCPClonePair ();
+                pairs[i].globalcloneid1 = result.getString ("globalcloneid1");
+                pairs[i].globalcloneid2 = result.getString ("globalcloneid2");
+                pairs[i].madepairsinrevisions = result.getString ("madepairsinrevisions");
+                pairs[i].gcid1changedinrevisions = result.getString ("gcid1changedinrevisions");
+                pairs[i].gcid2changedinrevisions = result.getString ("gcid2changedinrevisions");
+                i++;
+            }
+//            disconnect ();
+        }
+        catch (Exception e)
+        {
+            System.out.println ("error. "+e);
+        }
+        return pairs;
+    }
+    
+    
+    
+    
+    
     public SingleClone getCloneInfo (int gcid, int clonetype, int revision)
     {
         SingleClone clone = new SingleClone ();
