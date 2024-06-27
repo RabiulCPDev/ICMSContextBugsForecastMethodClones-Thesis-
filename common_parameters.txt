@@ -1,7 +1,7 @@
-subject system = /home/rabiul/systems/ctags
-subject system path = /home/rabiul/systems/ctags/repository
+subject system = /home/rabiul/systems/carol
+subject system path = /home/rabiul/systems/carol/repository
 programming language = c
-revision count = 400
-database connection string = jdbc:mysql://localhost:3306/ctags
+revision count = 1000
+database connection string = jdbc:mysql://localhost:3306/carol
 separator =  : 
 clone type index = 1

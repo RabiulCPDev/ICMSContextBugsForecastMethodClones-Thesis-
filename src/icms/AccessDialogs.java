@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -445,7 +447,7 @@ public class AccessDialogs extends javax.swing.JFrame {
         CommonParameters cp = new CommonParameters ();
         InvestigatingBugproneness ib = new InvestigatingBugproneness ();
         String bugfixcommits = ib.getBugFixCommits();
-        Micro_SPCP mic_spcp = new Micro_SPCP();
+        Clone_SPCP clone_spcp = new Clone_SPCP();
         // Connect with database
         da.connect ();
         
@@ -461,33 +463,45 @@ public class AccessDialogs extends javax.swing.JFrame {
        
         // let's work on every of revision
         
-        int micro_clones=0,buggy_micro_clone=0,buggy_micro_clone_spcp=0;
+        int buggy_clone=0,clone_replicated_bug=0,buggy_clone_spcp=0;
         Map<String,Integer>mapFile= new HashMap<String,Integer>();
         Map<String,Integer>mapRevision= new HashMap<String,Integer>();
+        Set <String> globalid = new HashSet<>();
         
-        for(int i=2;i<cp.revisionCount;i++){
-            //System.out.println("Working on revison no : "+i);
+        
+        
+        
+        clone_spcp.revResult(clonetype);
+        
+        for(int i=1;i<cp.revisionCount;i++)
+        {
+           // System.out.println("Working on revison no : "+i);
             
-        SingleClone [] clones = da.getClones(i-1, clonetype);
-        SingleChange [] changes = da.getChangess(i-1);
-        
-           if(mic_spcp.checkMicroClone(i,clonetype,clones,changes)){
-               micro_clones++;
-              
-            String rev =Integer.toString(i-1);
-            if(!bugfixcommits.contains(rev)){
-               buggy_micro_clone++;
-            if(mic_spcp.checkSpcp(spcpClones, clones, changes)){
-                buggy_micro_clone_spcp++;
-            }
-           }
-          }
-            
-        }
-        System.out.println("Total Micro-clones = "+ micro_clones);
-        System.out.println("Total Micro-clones with replicated bug = "+buggy_micro_clone);
-        System.out.println("Total Micro-clones with replicated bug+ spcp-clones = "+buggy_micro_clone_spcp);
-        
+            SingleClone [] clones = da.getClones(i-1, clonetype);
+            SingleChange [] changes = da.getChangess(i-1);
+
+
+
+                String rev =Integer.toString(i-1);
+                if(!bugfixcommits.contains(rev)){
+                   buggy_clone++;
+                   if(clone_spcp.checkBugReplication(clones, changes))
+                   {
+                       clone_replicated_bug++;
+                       if(clone_spcp.checkSpcp(spcpClones, clones, changes))
+                        {
+                             buggy_clone_spcp++;
+                        }
+                   }
+
+               }
+
+       }
+        System.out.println("Total clones with replicated bug = "+buggy_clone);
+        System.out.println("Total clones with replicated bug = "+ clone_replicated_bug);
+        System.out.println("Total clones with replicated bug+ spcp-clones = "+buggy_clone_spcp);
+      
+               
         
         
         
