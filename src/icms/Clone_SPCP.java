@@ -18,26 +18,28 @@ public class Clone_SPCP {
         CommonParameters cp = new CommonParameters ();
         InvestigatingBugproneness ib = new InvestigatingBugproneness ();
         String bugfixcommits = ib.getBugFixCommits();
-        String bugRepRev ;
+        String buggyglobalid="";
                
      
-      public boolean checkBugReplication(SingleClone []clones, SingleChange []changes)
-            {
-                for(int j=0;changes[j]!=null;j++)
-                  {
-                     for(int k=0;clones[k]!=null;k++)
-                     {
-                           int change_startLine=Integer.parseInt(changes[j].startline), changes_endLine=Integer.parseInt(changes[j].endline);
-                           int clone_startLine =Integer.parseInt(clones[k].startline), clone_endLine =Integer.parseInt(clones[k].endline);
-                         if(changes[j].filepath.equals(clones[k].filepath) && !((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
-                         {                      
-                             return true;                            
-                         }
-                      }
+  public boolean checkBugReplication(SingleClone []clones, SingleChange []changes,int cloneIndex1)
+    {
+        for(int j=0;changes[j]!=null;j++)
+          {
 
-                  }
-                return false;
-            }
+                   int change_startLine=Integer.parseInt(changes[j].startline), changes_endLine=Integer.parseInt(changes[j].endline);
+                   int clone_startLine =Integer.parseInt(clones[cloneIndex1].startline), clone_endLine =Integer.parseInt(clones[cloneIndex1].endline);
+
+                  // check clone 
+                   if(changes[j].filepath.equals(clones[cloneIndex1].filepath) && ((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
+                 {                      
+//                    if(!buggyglobalid.contains(clones[cloneIndex1].globalcloneid)) buggyglobalid=buggyglobalid+" "+clones[cloneIndex1].globalcloneid;
+                     return true;                      
+                 }
+
+
+          }
+        return false;
+    }
       
       public void revResult(int type){
           
@@ -123,18 +125,15 @@ public class Clone_SPCP {
                   
                  for(String pair : pairs) {
                      if(pair.length()==0) continue;
+                     if(!buggyglobalid.contains(pair)) continue;
                       int gid = Integer.parseInt(pair);
                       if(revFile[i].revision_start==revFile[gid].revision_start){
                           sameRevision++;
-                      }else{
-                          differentRevision++;
                       }
                       
                       if(revFile[i].fileName.equals(revFile[gid].fileName))
                       {
                           sameFile++;
-                      }else{
-                          differentFile++;
                       }
                       
                       
@@ -142,18 +141,13 @@ public class Clone_SPCP {
                  
               }
           }
-          
-              System.out.println("Same revision = "+sameRevision+" Different revision = "+differentRevision);
-              System.out.println("Same file = "+sameFile+" different File = " +differentFile);
+              
+              System.out.println("Total Same revision = "+sameRevision);
+              System.out.println("Total Same file = "+sameFile);
               System.out.println(maxId+ "  "+maxCloneId);
+              System.out.println(buggyglobalid);
               
-              
-              
-              
-              
-              
-              
-          
+                     
               
           } catch (Exception e) {
               e.printStackTrace();

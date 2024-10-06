@@ -556,7 +556,7 @@ public class DatabaseAccess {
         int i =0;
         try
         {
-            connect();
+//            connect();
             executeQuery ("select * from type"+clonetype+"clonepairs where revision = "+revision);
             while (result.next ())
             {
@@ -569,7 +569,7 @@ public class DatabaseAccess {
                 clonepairs[i].clonetype = clonetype;
                 i++;
             }
-            disconnect ();
+//            disconnect ();
         }
         catch (Exception e)
         {
