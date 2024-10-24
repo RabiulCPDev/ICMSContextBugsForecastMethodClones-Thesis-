@@ -456,10 +456,6 @@ public class AccessDialogs extends javax.swing.JFrame {
         // show the revision because of bug-fix
         System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
 
-        int buggy_clone = 0, clone_replicated_bug = 0, buggy_clone_spcp = 0;
-
-        int sameFiles = 0, notSameFiles = 0, replicatedSF = 0, replicatedNSF = 0;
-        String globalCloneId = "";
         for (int i = 2; i < cp.revisionCount; i++) {
             System.out.println("Working on revison no : " + i);
 
@@ -467,42 +463,19 @@ public class AccessDialogs extends javax.swing.JFrame {
             SingleChange[] changes = da.getChangess(i - 1);
             SingleClonePair[] clonePairs = da.getClonePairs(i - 1, clonetype);
             Clone_SPCP checkClass = new Clone_SPCP();
-            Set<Integer> replicatedClones = new HashSet<>();
-            ArrayList <ArrayList<Integer>> Adj = new ArrayList<>();
-            
-            for(int l=0;l<1000;l++){
-                Adj.add(new ArrayList<>());
+            int k=0;
+            ArrayList<ArrayList<Integer>> Graph = checkClass.CreateGraph(clonePairs);
+            boolean [] visited = new boolean[10000];
+            int totalIsland=0;
+            for(int j=0;j<Graph.size();j++){
+              totalIsland=totalIsland + checkClass.dfs(Graph, visited, j);
             }
+            System.out.println("Total connected component = "+ totalIsland);
             
-            
-            for(int kk=0;clonePairs[kk]!=null;kk++){
-                   int id1= Integer.parseInt(clonePairs[kk].cloneid1);
-                   int id2 = Integer.parseInt(clonePairs[kk].cloneid2);
-                   Adj.get(id2).add(id1);
-                   Adj.get(id1).add(id2);
-            }
-            
-            
-            
-            
-            int ind1 = 0;
-            String rev = Integer.toString(i);
-            int cloneIndex = -1;
-            if (bugfixcommits.contains(" " + i + " ")) {
-                
-                boolean checkRep=false;
-                String path1 = " ", path2 = " ";
-                
-
-            }
+           
         }
 
-        int percentage = replicatedSF * 100;
-
-        System.out.println("Matched the file= " + replicatedSF);
-        System.out.println("Not Matched = " + replicatedNSF);
-        percentage = percentage / (replicatedNSF + replicatedSF);
-        System.out.println("Percentage of getting in same files = " + percentage);
+       
 
         // Disconnect Database
         da.disconnect();

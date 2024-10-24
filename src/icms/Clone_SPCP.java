@@ -4,6 +4,7 @@
  */
 package icms;
 
+import java.util.ArrayList;
 import  java.util.Set;
 import java.util.HashSet;
 
@@ -191,6 +192,53 @@ public class Clone_SPCP {
                 return result;
 
             }
+      
+      
+      public ArrayList<ArrayList<Integer>> CreateGraph(SingleClonePair []pairs){
+                int maxVertices=0;
+                for(SingleClonePair p:pairs){
+                    if(p == null ) continue;
+                    int s= Integer.parseInt(p.cloneid1);
+                    int d= Integer.parseInt(p.cloneid2);
+                    maxVertices =Math.max(maxVertices,Math.max(s, d));
+                }
+                System.out.println("Max = "+maxVertices);
+                ArrayList<ArrayList<Integer>>adjList;
+                adjList = new ArrayList<> (maxVertices+1);
+                for(int i=0;i<=maxVertices;i++){
+                    adjList.add(new ArrayList<>());
+                }
+                
+             for(SingleClonePair pair : pairs ){
+                    if(pair == null ) continue;
+                 int s= Integer.parseInt(pair.cloneid1);
+                 int d= Integer.parseInt(pair.cloneid2);  
+                 if(s < adjList.size() && d < adjList.size() && s!=-1 && d!=-1){
+                      adjList.get(s).add(d);
+                      adjList.get(d).add(s);
+                 }
+//                 System.out.println(s +" pair with "+d);
+                
+                 
+                }
+             return adjList;
+      }
+      
+      public int dfs(ArrayList<ArrayList<Integer>>adjList,boolean [] visited,int s){
+                if(visited[s]) return 0;
+                visited[s] =true;
+                for(int child:adjList.get(s)){
+                    if(!visited[child]){
+                         System.out.println("Clone "+child + " connected with  Clone "+s);
+                         dfs(adjList, visited, child);
+                    }
+         
+                }
+                return 1;
+      }
+      
+      
+      
 
       }
 
