@@ -455,27 +455,70 @@ public class AccessDialogs extends javax.swing.JFrame {
 
         // show the revision because of bug-fix
         System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
-
-        for (int i = 2; i < cp.revisionCount; i++) {
+        int sameFile=0,difFile=0;
+        for (int i = 477; i < 478; i++) {
             System.out.println("Working on revison no : " + i);
 
             SingleClone[] clones = da.getClones(i - 1, clonetype);
             SingleChange[] changes = da.getChangess(i - 1);
-            SingleClonePair[] clonePairs = da.getClonePairs(i - 1, clonetype);
+            SingleClonePair[] clonePairs = da.getClonePairs(i-1, clonetype);
             Clone_SPCP checkClass = new Clone_SPCP();
-            int k=0;
-            ArrayList<ArrayList<Integer>> Graph = checkClass.CreateGraph(clonePairs);
-            boolean [] visited = new boolean[10000];
-            int totalIsland=0;
-            for(int j=0;j<Graph.size();j++){
-              totalIsland=totalIsland + checkClass.dfs(Graph, visited, j);
-            }
-            System.out.println("Total connected component = "+ totalIsland);
             
-           
+            
+            if(!bugfixcommits.contains(" "+i+" ")) continue;
+            
+            int clone1ind=-1,clone2ind=-1;
+            int ind=0;
+            while(clones[ind]!=null){
+                int in=0;
+                while(clonePairs[in]!=null){
+                    if(clonePairs[in].cloneid1.equals(clones[ind].cloneid)){
+                        clone1ind=ind;
+                        break;
+                    }
+                    in++;
+                }
+                ind++;
+                if(clone1ind!=-1) break;
+                
+            }
+            ind =0;
+             while(clones[ind]!=null){
+                int in=0;
+                while(clonePairs[in]!=null){
+                    if(clonePairs[in].cloneid2.equals(clones[ind].cloneid)){
+                        clone2ind=ind;
+                        break;
+                    }
+                    in++;
+                }
+                ind++;
+                if(clone2ind!=-1) break;
+                
+            }
+            
+            boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
+            boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
+            // lets check
+            
+            System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
+            System.out.println(clones[clone2ind].cloneid + " "+clones[clone2ind].startline+" "+clones[clone2ind].endline);
+            
+            
+            
+            if(c1 || c2){
+                if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
+                    System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
+                    sameFile++; 
+                }else{
+                    difFile++;
+                }
+            }
+            
         }
 
-       
+        System.out.println("Total Same File = "+sameFile);
+        System.out.println("Total not same File ="+difFile);
 
         // Disconnect Database
         da.disconnect();

@@ -24,16 +24,18 @@ public class Clone_SPCP {
      
   public boolean checkBugReplication(SingleClone []clones, SingleChange []changes,int cloneIndex1)
     {
+        System.out.println("Present");
         for(int j=0;changes[j]!=null;j++)
           {
 
                    int change_startLine=Integer.parseInt(changes[j].startline), changes_endLine=Integer.parseInt(changes[j].endline);
                    int clone_startLine =Integer.parseInt(clones[cloneIndex1].startline), clone_endLine =Integer.parseInt(clones[cloneIndex1].endline);
-
+// changes[j].filepath.equals(clones[cloneIndex1].filepath) &&
                   // check clone 
-                   if(changes[j].filepath.equals(clones[cloneIndex1].filepath) && ((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
+                   if( !((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
                  {                      
 //                    if(!buggyglobalid.contains(clones[cloneIndex1].globalcloneid)) buggyglobalid=buggyglobalid+" "+clones[cloneIndex1].globalcloneid;
+                     System.out.println("return true");
                      return true;                      
                  }
 
