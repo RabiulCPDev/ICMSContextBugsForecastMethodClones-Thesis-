@@ -382,7 +382,7 @@ public class DatabaseAccess {
     
         public SingleSPCPClonePair [] getSPCPCloness (int clonetype)
     {
-        SingleSPCPClonePair [] pairs = new SingleSPCPClonePair[10000000];
+        SingleSPCPClonePair [] pairs = new SingleSPCPClonePair[100];
         int i = 0;
         try
         {
@@ -404,7 +404,14 @@ public class DatabaseAccess {
         {
             System.out.println ("error. "+e);
         }
-        return pairs;
+//        SingleSPCPClonePair [] pr = new SingleSPCPClonePair[i];
+//        
+//        for(int j=0;j<i;j++){
+//            pr[j]=pairs[j];
+//        }
+//        
+//        return pr;
+        return  pairs;
     }
     
     
@@ -650,7 +657,35 @@ public class DatabaseAccess {
     }
     
     
-    
+    public SingleClone [] getCloneBygId(int gid,int clonetype){
+           SingleClone [] clones = new SingleClone[10000];
+        int i = 0;
+        try
+        {
+            //connect();
+            executeQuery ("select * from type"+clonetype+"clones where globalcloneid = "+gid);
+            while (result.next())
+            {
+                clones[i] = new SingleClone ();
+                clones[i].revision = result.getString("revision");
+                clones[i].cloneid = result.getString("cloneid");
+                clones[i].methodid = result.getString("methodid");
+                clones[i].globalcloneid = result.getString("globalcloneid");
+                clones[i].changecount = result.getString("changecount");
+                clones[i].filepath = result.getString("filepath");
+                clones[i].startline = result.getString("startline");
+                clones[i].endline = result.getString("endline");
+                i++;
+            }
+            
+            //disconnect ();
+        }
+        catch (Exception e)
+        {
+            System.out.println ("error. "+e);
+        }
+        return clones;
+    }
     
     public SingleMethod [] getMethods (int revision)
     {

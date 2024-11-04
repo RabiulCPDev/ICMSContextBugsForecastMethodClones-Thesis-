@@ -24,7 +24,7 @@ public class Clone_SPCP {
      
   public boolean checkBugReplication(SingleClone []clones, SingleChange []changes,int cloneIndex1)
     {
-        System.out.println("Present");
+       // System.out.println("Present");
         for(int j=0;changes[j]!=null;j++)
           {
 
@@ -194,6 +194,25 @@ public class Clone_SPCP {
                 return result;
 
             }
+      
+      public boolean SPCP_CLONE_REP(SingleClone []clones){
+          int i=0;     
+          while(clones[i]!=null){
+                   System.out.println("Working inside");
+              if(!bugfixcommits.contains(" "+clones[i].revision+" ")) {
+                  i++;
+                  continue;
+              }
+              int rev = Integer.parseInt(clones[i].revision);
+              SingleChange[] ch = da.getChanges(rev);
+              
+               if(checkBugReplication(clones,ch,i)){
+                   return true;
+               }
+               i++;
+          }
+          return false;
+      } 
       
       
       public ArrayList<ArrayList<Integer>> CreateGraph(SingleClonePair []pairs){

@@ -443,82 +443,141 @@ public class AccessDialogs extends javax.swing.JFrame {
         CommonParameters cp = new CommonParameters();
         InvestigatingBugproneness ib = new InvestigatingBugproneness();
         String bugfixcommits = ib.getBugFixCommits();
-        Clone_SPCP clone_spcp = new Clone_SPCP();
+       
+        Clone_SPCP checkClass = new Clone_SPCP();
         // Connect with database
         da.connect();
-
         String ctype = JOptionPane.showInputDialog("Clone Type ?");
         int clonetype = Integer.parseInt(ctype);
 
         // Get SPCP clones
         SingleSPCPClonePair[] spcpClones = da.getSPCPCloness(clonetype);
+        
+        // SPCP REP
+        System.out.println(spcpClones.length);
+        int index=0,idx=0,totalSpcp=0;
+        
+        String GlobalID=" ";
+        while(spcpClones[index]!=null){
+            int gid= Integer.parseInt(spcpClones[index].globalcloneid1);
+            
+            SingleClone[] clone= da.getCloneBygId(gid, clonetype);
+             
+            System.out.println("Working");
+             boolean flag1 = checkClass.SPCP_CLONE_REP(clone);
+            
+             int gid2= Integer.parseInt(spcpClones[index].globalcloneid2);
+            SingleClone[] cloness= da.getCloneBygId(gid2, clonetype);
+            
+//            if(!GlobalID.contains(" "+gid+" ")){
+//                GlobalID=GlobalID+gid+" ";
+//                idx++;
+//            }else if(!GlobalID.contains(" "+gid2+" ")){
+//                GlobalID=GlobalID+gid2+" ";
+//                idx++;
+//            }else{
+//                index++;
+//                continue;
+//            }
+//            
+//             
+//             boolean flag2 = checkClass.SPCP_CLONE_REP(cloness);
+//             
+//             if(flag1 || flag2){
+//                 totalSpcp+=1;
+//             }
 
-        // show the revision because of bug-fix
-        System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
-        int sameFile=0,difFile=0;
-        for (int i = 477; i < 478; i++) {
-            System.out.println("Working on revison no : " + i);
 
-            SingleClone[] clones = da.getClones(i - 1, clonetype);
-            SingleChange[] changes = da.getChangess(i - 1);
-            SingleClonePair[] clonePairs = da.getClonePairs(i-1, clonetype);
-            Clone_SPCP checkClass = new Clone_SPCP();
-            
-            
-            if(!bugfixcommits.contains(" "+i+" ")) continue;
-            
-            int clone1ind=-1,clone2ind=-1;
-            int ind=0;
-            while(clones[ind]!=null){
-                int in=0;
-                while(clonePairs[in]!=null){
-                    if(clonePairs[in].cloneid1.equals(clones[ind].cloneid)){
-                        clone1ind=ind;
-                        break;
-                    }
-                    in++;
-                }
-                ind++;
-                if(clone1ind!=-1) break;
-                
+
+//              for(SingleClone cl : cloness){
+//                 if(cl!=null) System.out.println(cl.globalcloneid + " "+ cl.cloneid);
+//              }
+
+
+          if(!GlobalID.contains(" "+gid+" ")){
+               GlobalID=GlobalID+gid+" ";
+              idx++;
+          }else{
+             index++;
+             continue;
             }
-            ind =0;
-             while(clones[ind]!=null){
-                int in=0;
-                while(clonePairs[in]!=null){
-                    if(clonePairs[in].cloneid2.equals(clones[ind].cloneid)){
-                        clone2ind=ind;
-                        break;
-                    }
-                    in++;
-                }
-                ind++;
-                if(clone2ind!=-1) break;
-                
-            }
-            
-            boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
-            boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
-            // lets check
-            
-            System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
-            System.out.println(clones[clone2ind].cloneid + " "+clones[clone2ind].startline+" "+clones[clone2ind].endline);
-            
-            
-            
-            if(c1 || c2){
-                if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
-                    System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
-                    sameFile++; 
-                }else{
-                    difFile++;
-                }
-            }
-            
+
+
+if(flag1) totalSpcp+=1;
+
+
+
+             index++;
         }
-
-        System.out.println("Total Same File = "+sameFile);
-        System.out.println("Total not same File ="+difFile);
+        System.out.println("Total spcp with replicated bug = "+totalSpcp+" out of "+ index);
+        
+        
+        
+        
+//        
+//        
+//        
+//        // show the revision because of bug-fix
+//        System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
+//        int sameFile=0,difFile=0;
+//        String fileCheck="";
+//        
+//        for (int i = 2; i < 1; i++) {
+//            
+//
+//            SingleClone[] clones = da.getClones(i - 1, clonetype);
+//            SingleChange[] changes = da.getChangess(i - 1);
+//            SingleClonePair[] clonePairs = da.getClonePairs(i-1, clonetype);
+//           
+//            
+//            
+//            if(!bugfixcommits.contains(" "+i+" ")) continue;
+//            System.out.println("Working on revison no : " + i);
+//            
+//            int clone1ind=-1,clone2ind=-1;
+//            int ind=0;
+//
+//            for(SingleClonePair pair:clonePairs){
+//                    if(pair==null) continue;
+//                       ind=0;
+//                        while(clones[ind]!=null){
+//                        if(pair.cloneid1.equals(clones[ind].cloneid)){
+//                           clone1ind=ind;
+//                           }
+//                        if(pair.cloneid2.equals(clones[ind].cloneid)){
+//                               clone2ind=ind;
+//                           } 
+//                        ind++;
+//                          
+//                    }
+//
+//                boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
+//                boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
+//            // lets check
+//            
+////                System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
+////                System.out.println(clones[clone2ind].cloneid + " "+clones[clone2ind].startline+" "+clones[clone2ind].endline);
+////            
+//            
+//            
+//                if(c1 || c2){
+//                  //  fileCheck=fileCheck+" ";
+//                    if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
+//                        System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
+//                        sameFile++; 
+//                    }else{
+//                        System.out.println("Different File");
+//                        difFile++;
+//                    }
+//                }
+//
+// 
+//            }
+//           
+//        }
+//
+//        System.out.println("Total Same File = "+sameFile);
+//        System.out.println("Total not same File ="+difFile);
 
         // Disconnect Database
         da.disconnect();
