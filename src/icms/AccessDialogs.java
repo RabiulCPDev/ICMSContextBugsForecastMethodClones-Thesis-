@@ -8,7 +8,9 @@ package icms;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -454,21 +456,21 @@ public class AccessDialogs extends javax.swing.JFrame {
         SingleSPCPClonePair[] spcpClones = da.getSPCPCloness(clonetype);
         
         // SPCP REP
-        System.out.println(spcpClones.length);
-        int index=0,idx=0,totalSpcp=0;
-        
-        String GlobalID=" ";
-        while(spcpClones[index]!=null){
-            int gid= Integer.parseInt(spcpClones[index].globalcloneid1);
-            
-            SingleClone[] clone= da.getCloneBygId(gid, clonetype);
-             
-            System.out.println("Working");
-             boolean flag1 = checkClass.SPCP_CLONE_REP(clone);
-            
-             int gid2= Integer.parseInt(spcpClones[index].globalcloneid2);
-            SingleClone[] cloness= da.getCloneBygId(gid2, clonetype);
-            
+//        System.out.println(spcpClones.length);
+//        int index=0,idx=0,totalSpcp=0;
+//        
+//        String GlobalID=" ";
+//        while(spcpClones[index]!=null){
+//            int gid= Integer.parseInt(spcpClones[index].globalcloneid1);
+//            
+//            SingleClone[] clone= da.getCloneBygId(gid, clonetype);
+//             
+//            System.out.println("Working");
+//            boolean flag1 = checkClass.SPCP_CLONE_REP(clone);
+//            
+//            int gid2= Integer.parseInt(spcpClones[index].globalcloneid2);
+//            SingleClone[] cloness= da.getCloneBygId(gid2, clonetype);
+//            
 //            if(!GlobalID.contains(" "+gid+" ")){
 //                GlobalID=GlobalID+gid+" ";
 //                idx++;
@@ -486,98 +488,164 @@ public class AccessDialogs extends javax.swing.JFrame {
 //             if(flag1 || flag2){
 //                 totalSpcp+=1;
 //             }
-
-
-
-//              for(SingleClone cl : cloness){
-//                 if(cl!=null) System.out.println(cl.globalcloneid + " "+ cl.cloneid);
-//              }
-
-
-          if(!GlobalID.contains(" "+gid+" ")){
-               GlobalID=GlobalID+gid+" ";
-              idx++;
-          }else{
-             index++;
-             continue;
-            }
-
-
-if(flag1) totalSpcp+=1;
-
-
-
-             index++;
-        }
-        System.out.println("Total spcp with replicated bug = "+totalSpcp+" out of "+ index);
-        
-        
-        
-        
-//        
-//        
-//        
-//        // show the revision because of bug-fix
-//        System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
-//        int sameFile=0,difFile=0;
-//        String fileCheck="";
-//        
-//        for (int i = 2; i < 1; i++) {
-//            
 //
-//            SingleClone[] clones = da.getClones(i - 1, clonetype);
-//            SingleChange[] changes = da.getChangess(i - 1);
-//            SingleClonePair[] clonePairs = da.getClonePairs(i-1, clonetype);
-//           
-//            
-//            
-//            if(!bugfixcommits.contains(" "+i+" ")) continue;
-//            System.out.println("Working on revison no : " + i);
-//            
-//            int clone1ind=-1,clone2ind=-1;
-//            int ind=0;
 //
-//            for(SingleClonePair pair:clonePairs){
-//                    if(pair==null) continue;
-//                       ind=0;
-//                        while(clones[ind]!=null){
-//                        if(pair.cloneid1.equals(clones[ind].cloneid)){
-//                           clone1ind=ind;
-//                           }
-//                        if(pair.cloneid2.equals(clones[ind].cloneid)){
-//                               clone2ind=ind;
-//                           } 
-//                        ind++;
-//                          
-//                    }
 //
-//                boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
-//                boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
-//            // lets check
-//            
-////                System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
-////                System.out.println(clones[clone2ind].cloneid + " "+clones[clone2ind].startline+" "+clones[clone2ind].endline);
-////            
-//            
-//            
-//                if(c1 || c2){
-//                  //  fileCheck=fileCheck+" ";
-//                    if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
-//                        System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
-//                        sameFile++; 
-//                    }else{
-//                        System.out.println("Different File");
-//                        difFile++;
-//                    }
-//                }
+////              for(SingleClone cl : cloness){
+////                 if(cl!=null) System.out.println(cl.globalcloneid + " "+ cl.cloneid);
+////              }
 //
-// 
-//            }
-//           
+//
+////          if(!GlobalID.contains(" "+gid+" ")){
+////               GlobalID=GlobalID+gid+" ";
+////              idx++;
+////          }else{
+////             index++;
+////             continue;
+////            }
+////
+////
+////      if(flag1) totalSpcp+=1;
+//
+//             index++;
 //        }
-//
-//        System.out.println("Total Same File = "+sameFile);
-//        System.out.println("Total not same File ="+difFile);
+       
+        
+        
+        
+        
+        int [] hash =new int [100000];
+        Map<Integer, Integer> hashLine = new HashMap<>();
+        
+        // show the revision because of bug-fix
+        System.out.println("Revision Created because of bug-fix:::::" + bugfixcommits);
+        int sameFile=0,difFile=0,spcp=0,totalRep=0;
+        String fileCheck=" ";
+        
+        for (int i = 2; i < cp.revisionCount; i++) {
+            
+
+            SingleClone[] clones = da.getClones(i - 1, clonetype);
+            SingleChange[] changes = da.getChangess(i - 1);
+            SingleClonePair[] clonePairs = da.getClonePairs(i-1, clonetype);
+           
+            
+            
+            if(!bugfixcommits.contains(" "+i+" ")) continue;
+            System.out.println("Working on revison no : " + i);
+            
+            int clone1ind=-1,clone2ind=-1;
+            int ind=0;
+
+            for(SingleClonePair pair:clonePairs)
+                {
+                        if(pair==null) continue;
+                           ind=0;
+                            while(clones[ind]!=null){
+                            if(pair.cloneid1.equals(clones[ind].cloneid)){
+                               clone1ind=ind;
+                               }
+                            if(pair.cloneid2.equals(clones[ind].cloneid)){
+                                   clone2ind=ind;
+                               } 
+                            ind++;
+
+               }
+               if( fileCheck.contains(" "+clones[clone1ind].revision+clones[clone1ind].filepath+clones[clone1ind].globalcloneid)) continue;
+               if( fileCheck.contains(" "+clones[clone2ind].revision+clones[clone2ind].filepath+clones[clone2ind].globalcloneid)) continue;
+               
+                                 
+                boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
+                boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
+            // lets check
+            
+//                System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
+//                System.out.println(clones[clone2ind].cloneid + " "+clones[clone2ind].startline+" "+clones[clone2ind].endline);
+//            
+            
+            
+                if(c1 || c2){
+                  //  fileCheck=fileCheck+" ";
+                    if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
+                        System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
+                        sameFile++; 
+                    }else{
+                        System.out.println("Different File");
+                        difFile++;
+                    }
+                    
+                }
+                
+               
+                if(c1){
+                    int line = Integer.parseInt(clones[clone1ind].endline)-Integer.parseInt(clones[clone1ind].startline)+1;
+                      if(line>0) hash[line]=hash[line]+1;
+                      if (line>0 && hashLine.containsKey(line)) {
+                         int l = hashLine.get(line);
+                          hashLine.put(line, l + 1);
+                        } else if(line>0){
+
+                                hashLine.put(line, 1);
+                        }
+                    fileCheck= fileCheck+clones[clone1ind].revision+clones[clone1ind].filepath+clones[clone1ind].globalcloneid+" ";
+                    int x=0;
+                    for(SingleSPCPClonePair spcpClone:spcpClones){
+                        if(clones[clone1ind].globalcloneid.equals(spcpClone.globalcloneid1) || clones[clone1ind].globalcloneid.equals(spcpClone.globalcloneid2)){
+                            spcp++;
+                            break;
+                        }
+                       
+                    }   
+                    totalRep++;
+                }
+                if(c2){
+                    int line = Integer.parseInt(clones[clone2ind].endline)-Integer.parseInt(clones[clone2ind].startline)+1;
+                   if(line>0) hash[line]=hash[line]+1;
+                    if (line>0 && hashLine.containsKey(line)) {
+                         int l = hashLine.get(line);
+                          hashLine.put(line, l + 1);
+                        } else if(line>0){
+
+                                hashLine.put(line, 1);
+                        }
+                    fileCheck= fileCheck+clones[clone2ind].revision+clones[clone2ind].filepath+clones[clone2ind].globalcloneid+" ";
+                    int x=0;
+                    for(SingleSPCPClonePair spcpClone:spcpClones){
+                        if(clones[clone2ind].globalcloneid.equals(spcpClone.globalcloneid2) || clones[clone2ind].globalcloneid.equals(spcpClone.globalcloneid2)){
+                            spcp++;
+                            break;
+                        }
+                    }
+                    totalRep++;
+                }
+
+ 
+            }
+           
+        }
+//        
+        Arrays.sort(hash);
+        System.out.println("Total Same File = "+sameFile);
+        System.out.println("Total not same File ="+difFile);
+        
+        System.out.println("Total spcp with replicated bug = "+spcp+" out of "+ totalRep);
+//        int indd = hash.length-1;
+//        while (indd>(sameFile+difFile) || indd>10) {
+//            System.out.print(hash[indd]+" ");
+//              indd--;
+//        }
+
+   for (Map.Entry<Integer, Integer> entry : hashLine.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+   
+    // size of clones
+   
+    
+
+
+
 
         // Disconnect Database
         da.disconnect();

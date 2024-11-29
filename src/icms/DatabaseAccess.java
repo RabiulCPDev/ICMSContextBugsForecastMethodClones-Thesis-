@@ -382,7 +382,7 @@ public class DatabaseAccess {
     
         public SingleSPCPClonePair [] getSPCPCloness (int clonetype)
     {
-        SingleSPCPClonePair [] pairs = new SingleSPCPClonePair[100];
+        SingleSPCPClonePair [] pairs = new SingleSPCPClonePair[1000];
         int i = 0;
         try
         {
@@ -658,7 +658,7 @@ public class DatabaseAccess {
     
     
     public SingleClone [] getCloneBygId(int gid,int clonetype){
-           SingleClone [] clones = new SingleClone[10000];
+           SingleClone [] clones = new SingleClone[100000];
         int i = 0;
         try
         {

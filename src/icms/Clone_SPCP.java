@@ -32,10 +32,10 @@ public class Clone_SPCP {
                    int clone_startLine =Integer.parseInt(clones[cloneIndex1].startline), clone_endLine =Integer.parseInt(clones[cloneIndex1].endline);
 // changes[j].filepath.equals(clones[cloneIndex1].filepath) &&
                   // check clone 
-                   if( !((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
+                   if(changes[j].filepath.equals(clones[cloneIndex1].filepath) && !((change_startLine>clone_endLine) || (changes_endLine<clone_startLine))) // We have to update the logic here
                  {                      
 //                    if(!buggyglobalid.contains(clones[cloneIndex1].globalcloneid)) buggyglobalid=buggyglobalid+" "+clones[cloneIndex1].globalcloneid;
-                     System.out.println("return true");
+//                     System.out.println("return true");
                      return true;                      
                  }
 
@@ -198,7 +198,7 @@ public class Clone_SPCP {
       public boolean SPCP_CLONE_REP(SingleClone []clones){
           int i=0;     
           while(clones[i]!=null){
-                   System.out.println("Working inside");
+//                   System.out.println("Working inside");
               if(!bugfixcommits.contains(" "+clones[i].revision+" ")) {
                   i++;
                   continue;
