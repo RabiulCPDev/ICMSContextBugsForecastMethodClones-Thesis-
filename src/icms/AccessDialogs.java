@@ -590,6 +590,7 @@ public class AccessDialogs extends javax.swing.JFrame {
                     fileCheck= fileCheck+clones[clone1ind].revision+clones[clone1ind].filepath+clones[clone1ind].globalcloneid+" ";
                     int x=0;
                     for(SingleSPCPClonePair spcpClone:spcpClones){
+                        if(spcpClone==null) continue;
                         if(clones[clone1ind].globalcloneid.equals(spcpClone.globalcloneid1) || clones[clone1ind].globalcloneid.equals(spcpClone.globalcloneid2)){
                             spcp++;
                             break;
@@ -611,6 +612,7 @@ public class AccessDialogs extends javax.swing.JFrame {
                     fileCheck= fileCheck+clones[clone2ind].revision+clones[clone2ind].filepath+clones[clone2ind].globalcloneid+" ";
                     int x=0;
                     for(SingleSPCPClonePair spcpClone:spcpClones){
+                        if(spcpClone==null) continue;
                         if(clones[clone2ind].globalcloneid.equals(spcpClone.globalcloneid2) || clones[clone2ind].globalcloneid.equals(spcpClone.globalcloneid2)){
                             spcp++;
                             break;
