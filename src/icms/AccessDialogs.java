@@ -555,8 +555,8 @@ public class AccessDialogs extends javax.swing.JFrame {
                if( fileCheck.contains(" "+clones[clone2ind].revision+clones[clone2ind].filepath+clones[clone2ind].globalcloneid)) continue;
                
                                  
-                boolean c1 = checkClass.checkBugReplication(clones, changes, clone1ind);
-                boolean c2 = checkClass.checkBugReplication(clones, changes, clone2ind);
+                boolean clone1 = checkClass.checkBugReplication(clones, changes, clone1ind);
+                boolean clone2 = checkClass.checkBugReplication(clones, changes, clone2ind);
             // lets check
             
 //                System.out.println(clones[clone1ind].cloneid + " "+clones[clone1ind].startline+" "+clones[clone1ind].endline);
@@ -564,7 +564,7 @@ public class AccessDialogs extends javax.swing.JFrame {
 //            
             
             
-                if(c1 || c2){
+                if(clone1 || clone2){
                   //  fileCheck=fileCheck+" ";
                     if(clones[clone1ind].filepath.equals(clones[clone2ind].filepath)){
                         System.out.println(clones[clone1ind].filepath+" matches "+clones[clone2ind].filepath);
@@ -577,7 +577,7 @@ public class AccessDialogs extends javax.swing.JFrame {
                 }
                 
                
-                if(c1){
+                if(clone1){
                     int line = Integer.parseInt(clones[clone1ind].endline)-Integer.parseInt(clones[clone1ind].startline)+1;
                       if(line>0) hash[line]=hash[line]+1;
                       if (line>0 && hashLine.containsKey(line)) {
@@ -599,7 +599,7 @@ public class AccessDialogs extends javax.swing.JFrame {
                     }   
                     totalRep++;
                 }
-                if(c2){
+                if(clone2){
                     int line = Integer.parseInt(clones[clone2ind].endline)-Integer.parseInt(clones[clone2ind].startline)+1;
                    if(line>0) hash[line]=hash[line]+1;
                     if (line>0 && hashLine.containsKey(line)) {
